@@ -43,7 +43,7 @@ Dentro do escopo do meu aprendizado e minha trilha de conhecimento estão:
    - Ideação e Conceituação de aplicações praticas em blockchain
    - Desenvolvimento do projeto final
 
-## ⛔ Conforme for atulizando a trailha, vou atulizando aqui !⛔
+## ⛔ Conforme for atulizando a trilha, vou atulizando aqui !⛔
 
 ## Motivação
 
