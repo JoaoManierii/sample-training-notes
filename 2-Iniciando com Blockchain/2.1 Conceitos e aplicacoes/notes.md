@@ -31,14 +31,16 @@ Aqui você vai encontrar uma explicação visual do funcionamento de uma Blockch
 Este vídeo é um reforço da demonstração visual do funcionamento da Blockchain.
 
 #### Resumo
-
 Blockchain é uma tecnologia de registro distribuído que permite o armazenamento de dados de forma transparente, segura e descentralizada. Seu conceito fundamental é a criação de um registro de transações ou informações que é compartilhado e sincronizado por uma rede de computadores, conhecidos como nós.
 
 Os principais conceitos do blockchain incluem:
-Distribuído e descentralizado: Em vez de confiar em uma autoridade central, como um banco ou governo, o blockchain distribui o controle entre múltiplos participantes da rede. Isso aumenta a segurança e a transparência, pois não há um único ponto de falha.
-Blocos e cadeia de blocos: As transações são agrupadas em blocos e cada bloco contém um conjunto de transações, além de um hash criptográfico do bloco anterior. Esses blocos são então encadeados, formando uma cadeia de blocos, daí o nome "blockchain".
-Criptografia: A criptografia é fundamental para garantir a segurança do blockchain. Ela é usada para proteger as transações, garantindo que elas sejam autênticas e não possam ser alteradas ou adulteradas.
-Consenso: Os participantes da rede devem concordar com as regras para adicionar novos blocos ao blockchain. Diferentes algoritmos de consenso, como o Proof of Work (Prova de Trabalho) e o Proof of Stake (Prova de Participação), são usados para garantir que as transações sejam válidas e que a integridade do blockchain seja mantida.
+
+- **Distribuído e descentralizado**: Em vez de confiar em uma autoridade central, como um banco ou governo, o blockchain distribui o controle entre múltiplos participantes da rede. Isso aumenta a segurança e a transparência, pois não há um único ponto de falha.
+- **Blocos e cadeia de blocos**: As transações são agrupadas em blocos e cada bloco contém um conjunto de transações, além de um hash criptográfico do bloco anterior. Esses blocos são então encadeados, formando uma cadeia de blocos, daí o nome "blockchain".
+- **Criptografia**: A criptografia é fundamental para garantir a segurança do blockchain. Ela é usada para proteger as transações, garantindo que elas sejam autênticas e não possam ser alteradas ou adulteradas.
+- **Consenso**: Os participantes da rede devem concordar com as regras para adicionar novos blocos ao blockchain. Diferentes algoritmos de consenso, como o Proof of Work (Prova de Trabalho) e o Proof of Stake (Prova de Participação), são usados para garantir que as transações sejam válidas e que a integridade do blockchain seja mantida.
+
 As aplicações do blockchain são diversas e incluem:
-Criptomoedas: A aplicação mais conhecida do blockchain é o Bitcoin e outras criptomoedas. O blockchain permite transações financeiras descentralizadas, sem a necessidade de intermediários como bancos.
-Contratos Inteligentes: Plataformas como Ethereum permitem a criação de contratos inteligentes, que são programas autônomos que executam automaticamente termos acordados quando as condições são atendidas. Isso tem aplicações em uma variedade de setores, desde serviços financeiros até cadeias de suprimentos.
+
+- **Criptomoedas**: A aplicação mais conhecida do blockchain é o Bitcoin e outras criptomoedas. O blockchain permite transações financeiras descentralizadas, sem a necessidade de intermediários como bancos.
+- **Contratos Inteligentes**: Plataformas como Ethereum permitem a criação de contratos inteligentes, que são programas autônomos que executam automaticamente termos acordados quando as condições são atendidas. Isso tem aplicações em uma variedade de setores, desde serviços financeiros até cadeias de suprimentos.
