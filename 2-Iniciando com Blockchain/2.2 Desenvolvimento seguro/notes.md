@@ -17,7 +17,24 @@ Durante essa apresentação foi trazido um “brainstorming”, sobre o Tema de 
 [Cyber Security](https://t3.ftcdn.net/jpg/00/11/00/60/360_F_11006037_aii0uRfb0JtcpPmVdzOzA9stJGC4ySEO.jpg)
 O iStudio de Cyber Security e sua importância para os negócios
 
+[Boas práticas em Cibersegurança](udemy.com/course/boas-praticas-em-ciberseguranca/learn)
+Guia do usuário para utilizar sistemas e a Internet sem cair nas armadilhas do cibercrime.
+
+- [Seção 1: Motivação - Importância da Cibersegurança](https://pt.slideshare.net/slideshow/embed_code/key/u05WrjcLcSVJkf)
+- [Seção 2: PII - Informações Pessoalmente Identificáveis](https://pt.slideshare.net/slideshow/embed_code/key/DQ5l0PnD03M2fn)
+- [Seção 3: Engenharia Social](https://pt.slideshare.net/slideshow/embed_code/key/sosYWIsZheIWiR)
+- [Seção 4: Malware](https://pt.slideshare.net/slideshow/embed_code/key/xJrgVCrUs9qwN1)
+- [Seção 5: E-mail: Cabeçalho, Links e Anexos](https://pt.slideshare.net/slideshow/embed_code/key/uifqlGI6YoXBXT)
+- [Seção 6: Segurança Online](https://pt.slideshare.net/slideshow/embed_code/key/hx5pkUGctk3Cpg)
+- [Seção 7: Comportamentos Seguros e Proativos](https://pt.slideshare.net/slideshow/embed_code/key/rLYNUK9ITnPCA7)
+- [Seção 8: Segurança na Rede](https://pt.slideshare.net/slideshow/embed_code/key/t6h27egJJJVZMo)
+- [Seção 9: Segurança Física](https://pt.slideshare.net/slideshow/embed_code/key/LXzqzHdKvqypkF)
+- [Seção 10: Dispositivos Móveis](https://pt.slideshare.net/slideshow/embed_code/key/3CamwNZlhNTgns)
+- [Seção 11: Senhas Seguras](https://pt.slideshare.net/slideshow/embed_code/key/Nmf9Q3u3hmLxXq)
+- [Seção 12: Como Agir Sob Ataque](https://pt.slideshare.net/slideshow/embed_code/key/6rB0coC6UOAPfQ)
+
 #### Resumo
+
 **Segurança no Desenvolvimento:** A segurança é vital para o desenvolvimento de aplicações e tecnologia da informação, evitando vulnerabilidades que podem ser exploradas por atacantes, resultando em danos financeiros e de confiança. Este módulo aborda o Innovation Studio de Cyber Segurança e oferece treinamentos sobre boas práticas e conceitos de segurança.
 
 **Prevenção à Fraude Digital:** Explora a natureza da fraude no comércio digital, como somos expostos a ela e como os fraudadores operam. A palestra destaca os desafios da fraude digital e formas de mitigá-la.
