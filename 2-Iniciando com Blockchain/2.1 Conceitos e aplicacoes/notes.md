@@ -1,4 +1,4 @@
-## Essenciais
+## Inciciando com blockchain
 ### Conceitos e Aplicações 🗳️
 
 Chegou a hora de falarmos sobre Blockchain! Vamos começar com alguns conteúdos introdutórios bem objetivos para você iniciar o entendimento sobre esta tecnologia. Depois iremos aprofundar no tema com conceitos mais complexos e profundos. Divirta-se!
