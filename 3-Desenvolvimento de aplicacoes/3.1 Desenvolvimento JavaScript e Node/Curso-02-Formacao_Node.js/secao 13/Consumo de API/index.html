@@ -27,6 +27,12 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+
+    var axiosConfig = {
+        headers: {
+            Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvQGdtYWlsLmNvbSIsImlhdCI6MTcxNjQ3NzYxNSwiZXhwIjoxNzE2NjUwNDE1fQ.4NSaogxFF2q8GpRTYSQatJX96vQZ102SAY3Ac22MQew"
+        }
+    };
     
     function createGame(){
         var titleInput = document.getElementById("title");
@@ -94,7 +100,7 @@
     }
 
 
-    axios.get("http://localhost:3000/games").then(response => {
+    axios.get("http://localhost:3000/games", axiosConfig).then(response => {
         var games = response.data;
         var list = document.getElementById("games");
 
