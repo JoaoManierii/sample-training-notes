@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja de games</title>
+
+    <h2>Login</h2>
+    <input type="text" name="email" id="email" placeholder="joao@gmail.com"> <br>
+    <input type="text" name="password" id="password" placeholder="*****">
+    <button type="button" onclick="login()">Login</button>
+
     <hr>
     <h4>Lista de games</h4>
     <ul id="games"></ul>
@@ -28,9 +34,30 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 
+    function login(){
+        var emailField = document.getElementById("email");
+        var passworField = document.getElementById("password");
+
+        var user = {
+            email: emailField.value,
+            password: passworField.value
+        }
+
+        axios.post("http://localhost:3000/auth",user).then(response => {
+            if(response.status == 200){
+                var token = response.data.token;
+                localStorage.setItem("token",token);
+
+                alert("Login efetuado com sucesso!")
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
     var axiosConfig = {
         headers: {
-            Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvQGdtYWlsLmNvbSIsImlhdCI6MTcxNjQ3NzYxNSwiZXhwIjoxNzE2NjUwNDE1fQ.4NSaogxFF2q8GpRTYSQatJX96vQZ102SAY3Ac22MQew"
+            Authorization: "Bearer " + localStorage.getItem("token")
         }
     };
     
