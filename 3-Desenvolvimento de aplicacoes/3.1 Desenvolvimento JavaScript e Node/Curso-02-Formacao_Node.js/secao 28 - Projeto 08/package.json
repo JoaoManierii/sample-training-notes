@@ -1,0 +1,21 @@
+{
+  "name": "secao-28---projeto-08",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "fullcalendar": "^6.1.13",
+    "mongoose": "^8.4.0",
+    "mongosh": "^2.2.6",
+    "nodemon": "^3.1.1"
+  }
+}
