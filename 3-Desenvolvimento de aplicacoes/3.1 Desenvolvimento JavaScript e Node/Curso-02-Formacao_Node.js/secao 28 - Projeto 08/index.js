@@ -66,6 +66,12 @@ app.get("/searchresult", async (req, res) => {
     res.render("list", {appos});
 });
 
+var pollTime = 1000 * 60 * 5;
+
+setInterval(async () => {
+    await appointmentService.SendNotification();
+}, pollTime);
+
 
 app.listen(8080, () => {
     console.log("Servidor rodando na porta 8080");
