@@ -2,6 +2,25 @@ let app = require("../src/app");
 let superTest = require("supertest");
 let request = superTest(app);
 
+let mainUser = { name: "Joao Manieri", email: "xj6@gmail.com", password: "123456" };
+
+beforeAll(() => {
+    return request.post("/user")
+    .send(mainUser).then(res => {
+
+    }).catch(err => {
+        console.log(err);
+    });
+});
+
+// // afterAll(() => {
+//     return request.delete(`/user/${mainUser.email}`)
+//     .then(res => {})
+//     .catch(err => {
+//         console.log(err);
+//     });
+// });
+
 describe("Cadastro de Usuario", () => {
     test("Deve cadastrar um usuario com sucesso", () => {
         let time = Date.now();
@@ -45,3 +64,18 @@ describe("Cadastro de Usuario", () => {
             });
         });
 });
+
+describe("Autenticacao de Usuario", () => {
+    test("Deve me retonar um token ao logar", () => {
+        return request.post("/auth")
+        .send({ email: mainUser.email, password: mainUser.password })
+        .then(res => {
+            expect(res.statusCode).toEqual(200);
+            expect(res.body.token).toBeDefined();
+        }).catch(err => {
+
+        });
+    });
+});
+
+   

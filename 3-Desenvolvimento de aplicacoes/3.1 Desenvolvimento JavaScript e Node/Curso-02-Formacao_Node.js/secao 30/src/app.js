@@ -1,7 +1,10 @@
-let express = require("express")
-let app = express()
-let mongoose = require("mongoose")
-let user = require("./models/User")
+let express = require("express");
+let app = express();
+let mongoose = require("mongoose");
+let user = require("./models/User");
+let bcrypt = require("bcrypt");
+let jwt = require("jsonwebtoken");
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -27,7 +30,12 @@ app.post("/user", async (req, res) => {
             res.json({error: "Email ja existente"});
             return;
         }
-        let newuser = new User(name = req.body.name, email = req.body.email, password = req.body.password);
+
+        let password = req.body.password
+        let salt = await bcrypt.genSalt(10);
+        let hash = await bcrypt.hash(password, salt);
+
+        let newuser = new User(name = req.body.name, email = req.body.email, password = hash);
         await newuser.save();
         res.json({email})
     } catch (err) {
@@ -36,4 +44,9 @@ app.post("/user", async (req, res) => {
 
 });
 
+app.delete("/user/:email", async (req, res) => {
+    await User.remove({email: req.params.email});
+    res.sendStatus(200);
+});
+  
 module.exports = app;
