@@ -76,6 +76,27 @@ describe("Autenticacao de Usuario", () => {
 
         });
     });
+    test("Deve impedir que um usuario nao cadastrado se loge", () => {
+        return request.post("/auth")
+        .send({ email: "emailx@x.com", password: "32111" })
+        .then(res => {
+            expect(res.statusCode).toEqual(403); // 403 - Forbidden
+            expect(res.body.errors.password).toEqual("Senha errada");
+        }).catch(err => {
+
+        });
+    });
+
+    test("Deve impedir que um usuario se logue com a senha errada", () => {
+        return request.post("/auth")
+        .send({ email: "xj6@gmail.com", password: "321" })
+        .then(res => {
+            expect(res.statusCode).toEqual(403);
+            expect(res.body.errors).toEqual("Email nao cadastrado");
+        }).catch(err => {
+
+        });
+    });
 });
 
    
