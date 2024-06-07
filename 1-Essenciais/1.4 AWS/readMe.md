@@ -1,4 +1,4 @@
-# AWS Partner: Sales Accreditation - 01
+# AWS Partner: Sales Accreditation - 01 - [Link para o resumo completo !](https://ufubr-my.sharepoint.com/:w:/g/personal/jotamanieri_ufu_br/EV8dwxPAvVtFr8eyodBJqQMBeK4vtZuQJefZCbOUOqPL2A?e=iMwJ10)
 
 ## ☁️ Computação em nuvem 
 
