@@ -8,9 +8,6 @@ Computação em nuvem é a entrega de recursos de TI sob demanda pela Internet c
 
 O visual a seguir descreve as tendências na evolução da computação. Quanto mais alto você for nos níveis de abstração, mais o provedor de nuvem poderá agregar valor e descarregar atividades não estratégicas do consumidor.
 
-![tendencias](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1717772400/7hgMIcCFos5hT775MYR51Q/tincan/938093_1660191117_p1ga5heg5o1r7smji17jp1pi816hpk_zip/assets/W2x0PdjNp-fhiQxf_5wTpzqMPOuLWrx7h.jpg)
-
-
 ## ☁️ Modelos de implantação de computação em nuvem 
 
 Quando alguém fala na “nuvem” no contexto de uma nuvem compartilhada ou pública, está se referindo a uma infraestrutura sob demanda fornecida por uma empresa como a AWS. As organizações que usam a nuvem pública podem aproveitar outras soluções fornecidas por um provedor de serviços de nuvem, como uma ou qualquer combinação das seguintes opções:  
