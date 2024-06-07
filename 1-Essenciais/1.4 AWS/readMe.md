@@ -76,6 +76,29 @@ Outro benefício (para os clientes com um contrato do AWS Enterprise Discount Pr
 
 Ao conversar com clientes que estão migrando para a AWS, é importante entender bem os principais benefícios. Também é importante poder explicar nossos principais diferenciais, conhecer a infraestrutura global e saber o que os clientes estão criando.
 
-## ⭐ Por que os clientes escolhem a AWS
+# 🚀 Facilitando a Transformação Digital 
 
-....
+## 🏗️ Modernização de Aplicativos em Geral 
+
+Os clientes estão passando por uma grande mudança, uma evolução da arquitetura. Eles estão mudando de um aplicativo monolítico para microsserviços menores e independentes. Os microsserviços são serviços mínimos de função implantados separadamente, mas podem interagir juntos para alcançar um caso de uso mais amplo. Esses aplicativos se tornam mais simples de criar e manter, pois são menores e mais gerenciáveis. 
+
+### 🚧 Algumas Limitações dos Aplicativos Monolíticos: 
+
+- 📈 Dimensionamento difícil 
+- ❌ Incapacidade de lidar com falhas de componentes 
+- 🐢 Processo de implantação lento 
+- 🔒 Opções limitadas 
+
+A AWS oferece uma plataforma completa para microsserviços. Ela oferece as peças fundamentais para auxiliar no desenvolvimento de microsserviços com serviços de computação, armazenamento, banco de dados, redes, sistema de mensagens, registro e monitoramento e DevOps. 
+
+## 🌐 Qualquer Aplicativo em Qualquer Escala 
+
+Seja qual for a agência, a organização ou a instituição, os clientes querem ser mais ágeis para inovar e reagir às mudanças mais rapidamente. Os aplicativos necessários nas organizações de hoje são muito diferentes daqueles do passado. Os clientes precisam dimensionar rapidamente para possivelmente milhões de usuários, ter disponibilidade global, gerenciar petabytes (ou exabytes) de dados e responder em milissegundos. Eles são chamados de aplicativos modernos e podem ser construídos por clientes ou adquiridos por meio de parceiros. 
+
+## 🔄 Transformação Digital: Além da Infraestrutura 
+
+Um exemplo da transformação digital em ação é a maneira como Machine Learning (ML) está trazendo melhores experiências para os clientes, operações comerciais mais eficientes e decisões mais rápidas e precisas.
+
+Com o aumento do poder computacional e a proliferação dos dados, o ML deixou de ser algo secundário para se tornar o principal diferencial de empresas e organizações em vários setores. Segundo previsão do Gartner, o valor comercial derivado da IA deve alcançar USD 3,9 trilhões em 2022.
+
+A IA e o ML oferecem valor aos clientes em várias Linhas de Negócios. Conversem com seus clientes para descobrir como o ML pode ajudá-los a alcançar objetivos comerciais.
