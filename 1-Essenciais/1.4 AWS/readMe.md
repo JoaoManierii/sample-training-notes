@@ -102,3 +102,132 @@ Um exemplo da transformação digital em ação é a maneira como Machine Learni
 Com o aumento do poder computacional e a proliferação dos dados, o ML deixou de ser algo secundário para se tornar o principal diferencial de empresas e organizações em vários setores. Segundo previsão do Gartner, o valor comercial derivado da IA deve alcançar USD 3,9 trilhões em 2022.
 
 A IA e o ML oferecem valor aos clientes em várias Linhas de Negócios. Conversem com seus clientes para descobrir como o ML pode ajudá-los a alcançar objetivos comerciais.
+
+# 📊 Valor Comercial e Benchmarking 
+
+## 💡 O que é Valor Comercial? 
+
+O conceito de valor comercial ajuda a determinar a integridade e o bem-estar de um negócio no longo prazo, incluindo, mas não se limitando ao seu valor econômico. Pode aparecer como custos reduzidos, recursos liberados, tempo de inatividade reduzido e tomada de decisão aprimorada. O AWS Cloud Value Framework fornece orientação sobre como fazer isso e mostra as diferentes áreas de valor comercial que os clientes perceberam ao migrar para a AWS.
+
+## 💰 Economia de Custo 
+
+As organizações veem a economia de custos como reduções nos gastos com TI e gastos com infraestrutura. As reduções de custos podem continuar à medida que os clientes migram para serviços adicionais da nuvem AWS.
+
+## 👥 Produtividade da Equipe 
+
+A produtividade do pessoal é a melhoria da eficiência por função numa base tarefa a tarefa. Isso significa tornar a equipe mais produtiva, reduzindo ou eliminando o tempo gasto em tarefas desnecessárias na nuvem.
+
+## 🔒 Resiliência Operacional 
+
+O valor comercial que a nuvem gera na forma de resiliência inclui maior disponibilidade do sistema, latência reduzida, maior alcance de SLA e melhor segurança.
+
+## ⚡ Agilidade Empresarial 
+
+Agilidade refere-se à capacidade de responder de forma rápida e eficaz a mudanças nas condições de negócios ou eventos de negócios inovadores. Ter sucesso em um setor ou mercado digitalmente competitivo depende muito da agilidade no desenvolvimento de produtos. A agilidade empresarial permite mais experimentação, o que aumenta o ritmo da inovação. Conforme aumenta a inovação, diminui o risco de falhas de alto custo em estágios posteriores.
+
+# 🤝 Como Lidar com Objeções à Nuvem
+
+## 🚧 Objeções à Nuvem
+
+Na AWS, trabalhamos com os clientes como ponto de partida e vemos as objeções como oportunidade de melhor entender seus desafios e necessidades. No processo de lidar com objeções, podemos superar essas preocupações, conquistar sua confiança e oferecer a solução certa a eles.
+
+### 💸 Custo
+
+Temos ferramentas e metodologias para ajudar a criar um caso de negócio e projetar a redução de custos da migração para a AWS. A mudança para a nuvem oferece benefícios adicionais que também podem ajudar a aumentar as margens ao mesmo tempo em que agrega valor comercial além de meras considerações financeiras. Por exemplo, produtividade da equipe, resiliência operacional e agilidade empresarial.
+
+- Escolha o modelo certo de preços
+- Combine a capacidade com a demanda
+- Implemente processos para identificar desperdícios de recursos
+
+### 🔐 Segurança, Conformidade e Privacidade
+
+Em relação à segurança dos dados, a AWS foi projetada para ser um dos ambientes de computação em nuvem mais flexíveis e seguros atualmente disponíveis. A infraestrutura central da AWS foi criada para satisfazer aos requisitos de segurança militares, de bancos globais e de outras organizações que lidam com informações altamente protegidas.
+
+- Na AWS, a segurança é a nossa principal prioridade.
+- O procedimento de segurança é maior do que em ambientes legados.
+- Os clientes herdam todos os benefícios da nossa experiência.
+- Nossa segurança é validada com os mais rigorosos frameworks de garantia externos.
+
+Algumas das organizações mais preocupadas com segurança, sejam agências governamentais públicas ou entidades privadas, escolhem a AWS para melhorar seu procedimento de segurança. Por exemplo, setores de saúde, bancos, legal e farmacêutico.
+
+### 👀 Perda de Controle ou Visibilidade
+
+A perda de controle não é apenas uma questão de segurança. Ela também está relacionada à aparente perda de visibilidade, porque o cliente não pode ver nem tocar na infraestrutura. Os clientes da nuvem têm mais visibilidade e controle do que nunca, com ferramentas centralizadas de monitoramento e governança como AWS Cost Explorer, AWS Security Hub, Amazon CloudWatch, AWS Config e AWS Organizations. É possível aplicar até 50 rótulos a cada servidor. Esses rótulos alimentam painéis centralizados para visualização e controle. Por exemplo, agora cada desenvolvedor pode ver diretamente como suas decisões de design afetam o faturamento.
+
+### 🏗️ Infraestrutura Existente
+
+A maioria dos clientes da AWS opera infraestruturas híbridas, com uma parte em data centers on-premises tradicionais e outras partes na nuvem. A migração para a AWS não significa mover tudo e abandonar o investimento atual. Trata-se de otimizar e simplificar sua infraestrutura, o que significa que eles migram para a nuvem apenas o que faz sentido. Essa abordagem híbrida é possível porque a AWS tem uma oferta muito ampla de soluções de nuvem híbrida, que inclui Amazon Virtual Private Cloud (Amazon VPC), AWS Direct Connect e AWS Storage Gateway.
+
+### 📚 Déficit de Habilidades
+
+“Nossa equipe não tem as habilidades de nuvem necessárias para dar suporte a este projeto.”
+
+- **Reconheça a questão:** Sua resposta a essa objeção varia de acordo com o modelo e a especialização da empresa. Para parceiros de serviços, é uma ótima oportunidade de mostrar sucessos específicos por solução ou segmento.
+- **Avaliar o preparo:** Antes da migração para a nuvem, recomendamos fazer uma avaliação de preparação para identificar quais são as habilidades em falta e como superar isso.
+
+Há várias abordagens que ajudam a mitigar esse problema:
+- Para reduzir o déficit, escolha uma estratégia de migração dentro da zona de conforto e das capacidades da organização. Migração não é sinônimo de modernização. Os clientes podem escolher opções de nuvem mais familiares.
+- Preencher a lacuna internamente com a qualificação da equipe.
+- Preencher a lacuna externamente. AWS Partners ajudam a resolver o déficit enquanto o cliente capacita a equipe. Os clientes também podem delegar o trabalho pesado operacional aos parceiros ou à AWS Managed Services (AMS), para que sua equipe possa se dedicar a tarefas relacionadas aos negócios e com valor agregado.
+
+### 🔄 Atrelamento a Fornecedor
+
+“Se migrarmos para a nuvem, vamos ficar dependentes de um fornecedor de plataforma e suas ofertas.”
+
+A liberdade de mudar para outro provedor é comumente conhecida como reversibilidade.
+
+- A troca de custos é um compromisso entre o custo inicial e o custo futuro de transferência.
+- Do ponto de vista técnico, a AWS oferece muitos serviços baseados em soluções de código aberto que possibilitam não ficar “bloqueado” a uma tecnologia e que proporcionam aos clientes a melhor reversibilidade possível.
+
+A nuvem AWS tem menor atrelamento porque usa o modelo de pagamento conforme o uso. Os clientes escolhem e controlam o ritmo da migração para a nuvem.
+
+### 🌿 Sustentabilidade
+
+“A AWS pode ajudar a melhorar o uso sustentável do nosso ambiente de TI?”
+
+A AWS oferece conhecimento e ferramentas para organizações de todos os tamanhos e de todos os setores construírem e implementarem soluções que cumpram suas metas de sustentabilidade.
+
+- Segundo um estudo do IDC de 2018, quase todas as organizações usam a AWS, ao menos parcialmente, como ambiente novo para a expansão da TI e dos negócios, ou seja, para aplicativos e serviços novos.
+- Organizações estão implementando práticas de sustentabilidade em todas as operações.
+- Em 2019, a AWS encomendou um relatório sobre emissões de carbono na nuvem em comparação com data centers empresariais comuns. Descobriu-se que a AWS é significativamente mais eficiente em termos de energia e tem uma pegada de carbono significativamente menor do que a maioria dos data centers dos EUA.
+
+A infraestrutura da AWS é 3,6 vezes mais eficiente em termos de energia do que a média dos data centers empresariais dos EUA pesquisados. E a AWS executa as mesmas tarefas com uma pegada de carbono 88% menor.
+
+# 🤝 Venda Conjunta com a AWS
+
+## 📚 Fundamentos
+
+A venda conjunta com a AWS é uma dinâmica de vendas em que a AWS e AWS Partners trabalham em conjunto em uma oportunidade do cliente. As equipes de vendas da AWS querem trabalhar com AWS Partners para agilizar o tempo de entrega de valor aos clientes por meio de soluções especializadas, conhecimento do setor e modelos flexíveis de engajamento.
+
+Há três motivos principais pelos quais os parceiros optam por trabalhar com a AWS:
+
+1. **Aumentar a Receita:** Os parceiros podem descobrir novas oportunidades de vendas, ajudar a gerar mais receita, acelerar negócios e conquistar clientes juntos.
+2. **Melhorar os Relacionamentos com Clientes:** Os parceiros podem trabalhar com a AWS para fornecer as melhores soluções aos clientes, compartilhar dados sobre ganhos comprovados e ajudar a fechar negócios.
+3. **Ganhar Incentivos Financeiros:** Os parceiros podem liberar o acesso a financiamento, descontos e créditos de treinamento à medida que se aprofundam e compartilham oportunidades com a AWS.
+
+## 🤝 Trabalhar com a AWS
+
+A AWS organiza sua equipe de vendas com base em características comuns dos clientes finais, agrupados em comercial ou setor público. Dentro de cada um desses segmentos, as contas dos clientes são consideradas Envolvidas ou Greenfield com base no fato de a conta estar no início de sua adoção da nuvem AWS ou mais avançada.
+
+- **Segmentos Comerciais**
+- **Segmentos do Setor Público**
+
+## 💡 Práticas Recomendadas
+
+Ao apresentar a uma equipe de vendas da AWS, o parceiro deve explicar de forma simples como a solução da sua empresa agrega valor ao cliente e funciona com as ofertas da AWS. Recomendamos não posicionar que sua empresa pode fazer tudo com as equipes de vendas da AWS. Os parceiros devem ser específicos e focar no que realmente diferencia sua oferta.
+
+- Soluções comprovadas do AWS Partner
+- Conhecimento em segmento ou setor
+- Referências dos clientes, vitórias, estudos de caso
+- Relacionamento com clientes no território
+
+## 💰 Programas de Financiamento AWS Partners
+
+Os programas de financiamento de AWS Partner ajudam os clientes a reduzir o custo de avaliar e migrar para a AWS. Os programas incentivam os clientes a trabalhar com AWS Partners diferenciados, pois espera-se que a participação do parceiro acelere o ritmo de adoção da AWS e minimize o risco. Os programas podem oferecer:
+
+1. Financiamento monetário para diminuir o custo dos serviços ao cliente
+2. Créditos promocionais da AWS para compensar o uso da AWS em um projeto
+
+Em alguns casos, o programa pode fornecer ambas as opções.
+
+O Portal de Financiamento de AWS Partner (APFP) é uma ferramenta de autoatendimento para que AWS Partners solicitem e gerenciem todos os seus benefícios de financiamento na forma de dinheiro ou créditos promocionais da AWS, a fim de apoiar suas atividades de criação, comercialização e venda. Disponível na Central AWS Partner, a ferramenta oferece aos parceiros acesso ao autoenvio de solicitações de financiamento, com transparência de status, notificações aprimoradas e visibilidade de relatórios.
