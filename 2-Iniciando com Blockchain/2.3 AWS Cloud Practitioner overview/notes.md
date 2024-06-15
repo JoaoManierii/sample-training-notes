@@ -481,7 +481,8 @@ A tabela de roteamento principal é usada implicitamente por sub-redes que não 
 
 Se você associar uma sub-rede a uma tabela de roteamento personalizada, a sub-rede a usará em vez da tabela de roteamento principal. Cada tabela de roteamento personalizada que você criar já terá a rota local dentro dela, permitindo que a comunicação flua entre todos os recursos e sub-redes dentro da VPC. Você pode proteger sua VPC associando explicitamente cada nova sub-rede a uma tabela de roteamento personalizada e deixando a tabela de roteamento principal em seu estado padrão original.
 
-Aqui está a tradução em português do conteúdo, formatado em Markdown com emojis para maior clareza e envolvimento:
+*** 
+# Module 4: AWS Storage
 
 ## Tipos de Armazenamento 📦
 
@@ -530,4 +531,85 @@ Se você trabalhou com armazenamento local, pode já estar familiarizado com arm
 
 Adicionar armazenamento em um data center tradicional é um processo rígido - as soluções de armazenamento devem ser compradas, instaladas e configuradas. Com a computação em nuvem, o processo é mais flexível. Você pode criar, excluir e modificar soluções de armazenamento em questão de minutos.
 
+Aqui está a tradução em português do conteúdo sobre Amazon EFS e Amazon FSx, formatado em Markdown com emojis:
 
+## Armazenamento de Arquivos com Amazon EFS e Amazon FSx 📁💾
+
+### Amazon Elastic File System (Amazon EFS) 🌐
+
+O Amazon Elastic File System (Amazon EFS) é um sistema de arquivos que cresce e encolhe automaticamente à medida que você adiciona e remove arquivos. Não há necessidade de provisionar ou gerenciar capacidade e desempenho de armazenamento. O Amazon EFS pode ser usado com serviços de computação da AWS e recursos locais. Você pode conectar dezenas, centenas e até milhares de instâncias de computação a um sistema de arquivos Amazon EFS ao mesmo tempo, e o Amazon EFS pode fornecer desempenho consistente para cada instância de computação.
+
+Com a interface web simples do Amazon EFS, você pode criar e configurar sistemas de arquivos rapidamente, sem nenhuma taxa mínima ou custo de configuração. Você paga apenas pelo armazenamento usado e pode escolher entre uma variedade de classes de armazenamento projetadas para atender ao seu caso de uso.
+
+### Amazon FSx 📊
+
+O Amazon FSx é um serviço totalmente gerenciado que oferece confiabilidade, segurança, escalabilidade e um conjunto amplo de capacidades que o tornam conveniente e econômico para lançar, executar e escalar sistemas de arquivos de alto desempenho na nuvem. Com o Amazon FSx, você pode escolher entre quatro sistemas de arquivos amplamente usados: Lustre, NetApp ONTAP, OpenZFS e Windows File Server. Você pode escolher com base na sua familiaridade com um sistema de arquivos ou com base nos requisitos de sua carga de trabalho para conjuntos de recursos, perfis de desempenho e capacidades de gerenciamento de dados.
+
+## Armazenamento em Bloco com Amazon EC2 Instance Store e Amazon EBS 📦
+
+### Amazon EC2 Instance Store 🖥️
+
+O Amazon Elastic Compute Cloud (Amazon EC2) instance store fornece armazenamento temporário em nível de bloco para uma instância. Este armazenamento está localizado em discos fisicamente conectados ao computador host. Isso vincula o ciclo de vida dos dados ao ciclo de vida da instância EC2. Se você excluir a instância, o instance store também será excluído. Por causa disso, o instance store é considerado armazenamento efêmero. Leia mais sobre isso na documentação do Amazon EC2 encontrada na seção de recursos no final desta lição.
+
+O instance store é ideal se você hospedar aplicações que replicam dados para outras instâncias EC2, como clusters Hadoop. Para essas cargas de trabalho baseadas em clusters, ter a velocidade dos volumes localmente conectados e a resiliência dos dados replicados ajuda a alcançar a distribuição de dados com alto desempenho. Também é ideal para armazenamento temporário de informações que mudam frequentemente, como buffers, caches, dados de scratch e outros conteúdos temporários.
+
+### Amazon EBS 📂
+
+Como o nome sugere, o Amazon Elastic Block Store (Amazon EBS) é um armazenamento em nível de bloco que você pode anexar a uma instância Amazon EC2. Você pode comparar isso a como você anexa um drive externo ao seu laptop. Este armazenamento anexável é chamado de volume EBS. Os volumes EBS funcionam de maneira semelhante aos drives externos em mais de um aspecto.
+
+- **Destacável**: Você pode desanexar um volume EBS de uma instância EC2 e anexá-lo a outra instância EC2 na mesma Zona de Disponibilidade para acessar os dados nele contidos.
+- **Distinto**: O drive externo é separado do computador. Isso significa que, se ocorrer um acidente e o computador falhar, você ainda terá seus dados no drive externo. O mesmo é verdadeiro para os volumes EBS.
+- **Limitado em tamanho**: Você está limitado ao tamanho do drive externo, porque ele tem um limite fixo de escalabilidade. Por exemplo, você pode ter um drive externo de 2 TB, o que significa que você pode ter apenas 2 TB de conteúdo nele. Isso também se aplica ao Amazon EBS, porque um volume também tem um limite máximo de quanto conteúdo você pode armazenar nele.
+- **Conexão 1-para-1**: A maioria dos volumes EBS só pode ser conectada a um computador por vez. A maioria dos volumes EBS tem uma relação de um-para-um com instâncias EC2, então eles não podem ser compartilhados ou anexados a várias instâncias ao mesmo tempo.
+
+### Escalando Volumes do Amazon EBS 📈
+
+Você pode escalar volumes EBS de duas maneiras:
+
+- **Aumentar o tamanho do volume** 🔍
+- **Anexar múltiplos volumes** 🔗
+
+### Casos de Uso do Amazon EBS ⚙️
+
+O Amazon EBS é útil quando você precisa recuperar dados rapidamente e manter os dados persistentes a longo prazo. Os volumes são comumente usados nos seguintes cenários:
+
+- **Sistemas Operacionais**
+- **Bancos de Dados**
+- **Aplicações Empresariais**
+- **Engines de Análise de Big Data**
+
+### Tipos de Volume do EBS 📊
+
+Os volumes EBS são organizados em duas categorias principais: unidades de estado sólido (SSDs) e unidades de disco rígido (HDDs). SSDs são usados para cargas de trabalho transacionais com operações frequentes de leitura/gravação com pequeno tamanho de I/O. HDDs são usados para cargas de trabalho de streaming grandes que precisam de alto desempenho de throughput. A AWS oferece dois tipos de cada.
+
+### Benefícios do Amazon EBS 🌟
+
+#### Alta Disponibilidade 🌐
+
+Quando você cria um volume EBS, ele é automaticamente replicado em sua Zona de Disponibilidade para evitar perda de dados de pontos únicos de falha.
+
+#### Persistência de Dados 🗄️
+
+O armazenamento persiste mesmo quando sua instância não está ativa.
+
+#### Criptografia de Dados 🔒
+
+Quando ativado pelo usuário, todos os volumes EBS suportam criptografia.
+
+#### Flexibilidade 🔄
+
+Os volumes EBS suportam mudanças em tempo real. Modifique o tipo de volume, o tamanho do volume e a capacidade de operações de entrada/saída por segundo (IOPS) sem interromper sua instância.
+
+#### Backups 🗂️
+
+O Amazon EBS oferece a capacidade de criar backups de qualquer volume EBS.
+
+### Snapshots do Amazon EBS 📸
+
+Erros acontecem. Um erro é não fazer backup dos dados e depois inevitavelmente perdê-los. Para evitar que isso aconteça com você, sempre faça backup de seus dados, mesmo na AWS. Como seus volumes EBS consistem nos dados de sua instância EC2, você deve fazer backups desses volumes, chamados snapshots.
+
+Os snapshots do EBS são backups incrementais que salvam apenas os blocos no volume que mudaram após seu snapshot mais recente. Por exemplo, se você tem 10 GB de dados em um volume e apenas 2 GB de dados foram modificados desde seu último snapshot, apenas os 2 GB que foram alterados são gravados no Amazon S3.
+
+Quando você tira um snapshot de qualquer um dos seus volumes EBS, os backups são armazenados de forma redundante em várias Zonas de Disponibilidade usando o Amazon S3. Esse aspecto de armazenar o backup no Amazon S3 é gerenciado pela AWS, então você não precisa interagir com o Amazon S3 para trabalhar com seus snapshots do EBS. Você os gerencia no console do Amazon EBS, que faz parte do console do Amazon EC2.
+
+Os snapshots do EBS podem ser usados para criar múltiplos novos volumes, seja na mesma Zona de Disponibilidade ou em uma diferente. Quando você cria um novo volume a partir de um snapshot, ele é uma cópia exata do volume original no momento em que o snapshot foi tirado.
