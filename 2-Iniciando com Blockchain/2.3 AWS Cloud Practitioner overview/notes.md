@@ -549,7 +549,7 @@ O Amazon FSx é um serviço totalmente gerenciado que oferece confiabilidade, se
 
 ### Amazon EC2 Instance Store 🖥️
 
-O Amazon Elastic Compute Cloud (Amazon EC2) instance store fornece armazenamento temporário em nível de bloco para uma instância. Este armazenamento está localizado em discos fisicamente conectados ao computador host. Isso vincula o ciclo de vida dos dados ao ciclo de vida da instância EC2. Se você excluir a instância, o instance store também será excluído. Por causa disso, o instance store é considerado armazenamento efêmero. Leia mais sobre isso na documentação do Amazon EC2 encontrada na seção de recursos no final desta lição.
+O Amazon Elastic Compute Cloud (Amazon EC2) instance store fornece armazenamento temporário em nível de bloco para uma instância. Este armazenamento está localizado em discos fisicamente conectados ao computador host. Isso vincula o ciclo de vida dos dados ao ciclo de vida da instância EC2. Se você excluir a instância, o instance store também será excluído. Por causa disso, o instance store é considerado armazenamento efêmero.
 
 O instance store é ideal se você hospedar aplicações que replicam dados para outras instâncias EC2, como clusters Hadoop. Para essas cargas de trabalho baseadas em clusters, ter a velocidade dos volumes localmente conectados e a resiliência dos dados replicados ajuda a alcançar a distribuição de dados com alto desempenho. Também é ideal para armazenamento temporário de informações que mudam frequentemente, como buffers, caches, dados de scratch e outros conteúdos temporários.
 
@@ -613,3 +613,337 @@ Os snapshots do EBS são backups incrementais que salvam apenas os blocos no vol
 Quando você tira um snapshot de qualquer um dos seus volumes EBS, os backups são armazenados de forma redundante em várias Zonas de Disponibilidade usando o Amazon S3. Esse aspecto de armazenar o backup no Amazon S3 é gerenciado pela AWS, então você não precisa interagir com o Amazon S3 para trabalhar com seus snapshots do EBS. Você os gerencia no console do Amazon EBS, que faz parte do console do Amazon EC2.
 
 Os snapshots do EBS podem ser usados para criar múltiplos novos volumes, seja na mesma Zona de Disponibilidade ou em uma diferente. Quando você cria um novo volume a partir de um snapshot, ele é uma cópia exata do volume original no momento em que o snapshot foi tirado.
+
+Aqui está a tradução em português do conteúdo sobre Amazon S3, formatado em Markdown com emojis:
+
+## Armazenamento de Objetos com Amazon S3 🌐
+
+### Amazon S3 ☁️
+
+Ao contrário do Amazon EBS, o Amazon Simple Storage Service (Amazon S3) é uma solução de armazenamento independente que não está vinculada ao computação. Com o Amazon S3, você pode recuperar seus dados de qualquer lugar na web. Se você já usou um serviço de armazenamento online para fazer backup dos dados do seu computador local, provavelmente usou um serviço semelhante ao Amazon S3. A grande diferença entre esses serviços de armazenamento online e o Amazon S3 é o tipo de armazenamento.
+
+O Amazon S3 é um serviço de armazenamento de objetos. O armazenamento de objetos armazena dados em uma estrutura plana. Um objeto é um arquivo combinado com metadados. Você pode armazenar quantos desses objetos quiser. Todas as características do armazenamento de objetos também são características do Amazon S3.
+
+### Conceitos do Amazon S3 📝
+
+No Amazon S3, você armazena seus objetos em contêineres chamados buckets. Você não pode carregar um objeto, nem mesmo uma única foto, no Amazon S3 sem criar primeiro um bucket. Quando você armazena um objeto em um bucket, a combinação de um nome de bucket, chave e ID de versão identifica exclusivamente o objeto.
+
+Ao criar um bucket, você especifica, no mínimo, dois detalhes: o nome do bucket e a Região AWS onde deseja que o bucket resida.
+
+### Nomes de Buckets do Amazon S3 🏷️
+
+O Amazon S3 suporta buckets globais. Portanto, cada nome de bucket deve ser único em todas as contas AWS em todas as Regiões AWS dentro de uma partição. Uma partição é um agrupamento de Regiões, das quais a AWS atualmente possui três: Regiões Padrão, Regiões da China e AWS GovCloud (EUA). Ao nomear um bucket, escolha um nome que seja relevante para você ou sua empresa. Por exemplo, você deve evitar usar AWS ou Amazon no nome do bucket.
+
+A seguir estão alguns exemplos das regras que se aplicam para nomear buckets no Amazon S3.
+
+- Os nomes dos buckets devem ter entre 3 (mínimo) e 63 (máximo) caracteres de comprimento.
+- Os nomes dos buckets podem consistir apenas em letras minúsculas, números, pontos (.) e hifens (-).
+- Os nomes dos buckets devem começar e terminar com uma letra ou número.
+- Os buckets não devem ser formatados como um endereço IP.
+- Um nome de bucket não pode ser usado por outra conta AWS na mesma partição até que o bucket seja excluído.
+- Se seu aplicativo cria automaticamente buckets, escolha um esquema de nomeação de buckets que seja improvável causar conflitos de nomeação e escolha um nome de bucket diferente, caso um não esteja disponível.
+
+### Casos de Uso do Amazon S3 🛠️
+
+O Amazon S3 é um serviço de armazenamento amplamente utilizado, com muitos mais casos de uso do que caberiam em uma tela. 
+
+- **Backup e armazenamento** 📂
+- **Hospedagem de mídia** 📺
+- **Entrega de software** 📦
+- **Lakes de dados** 🌊
+- **Sites estáticos** 🌐
+- **Conteúdo estático** 📜
+
+### Segurança no Amazon S3 🔒
+
+Tudo no Amazon S3 é privado por padrão. Isso significa que todos os recursos do Amazon S3, como buckets e objetos, só podem ser visualizados pelo usuário ou pela conta AWS que criou esse recurso. Os recursos do Amazon S3 são todos privados e protegidos desde o início.
+
+Se você decidir que quer que todos na internet vejam suas fotos, você pode optar por tornar seus buckets e objetos públicos. Um recurso público significa que todos na internet podem vê-lo. Na maioria das vezes, você não quer que suas permissões sejam tudo ou nada. Normalmente, você quer ser mais granular na forma como fornece acesso aos seus recursos.
+
+### Amazon S3 e Políticas IAM 🛡️
+
+Anteriormente, você aprendeu sobre a criação e uso de políticas do AWS Identity and Access Management (IAM). Agora você pode aplicar esse conhecimento ao Amazon S3. Quando as políticas IAM são anexadas aos seus recursos (buckets e objetos) ou a usuários, grupos e funções IAM, as políticas definem quais ações eles podem realizar. As políticas de acesso que você anexa aos seus recursos são chamadas de políticas baseadas em recursos e as políticas de acesso anexadas aos usuários em sua conta são chamadas de políticas de usuário.
+
+Você deve usar políticas IAM para buckets privados nos seguintes dois cenários:
+
+- Você tem muitos buckets com diferentes requisitos de permissão. Em vez de definir muitas políticas diferentes para buckets do S3, você pode usar políticas IAM.
+- Você quer que todas as políticas estejam em um local centralizado. Usando políticas IAM, você pode gerenciar todas as informações de políticas em um único local.
+
+### Políticas de Buckets do Amazon S3 📜
+
+Assim como as políticas IAM, as políticas de buckets do S3 são definidas em um formato JSON. Ao contrário das políticas IAM, que são anexadas a recursos e usuários, as políticas de buckets do S3 só podem ser anexadas a buckets do S3. A política que é colocada no bucket se aplica a cada objeto nesse bucket. As políticas de buckets do S3 especificam quais ações são permitidas ou negadas no bucket.
+
+Você deve usar políticas de buckets do S3 nos seguintes cenários:
+
+- Você precisa de uma maneira simples de fazer acesso entre contas ao Amazon S3, sem usar funções IAM.
+- Suas políticas IAM ultrapassam o limite de tamanho definido. As políticas de buckets do S3 têm um limite de tamanho maior.
+
+Para exemplos de políticas de buckets, veja o link de Exemplos de Políticas de Buckets aqui ou na seção de recursos.
+
+### Criptografia no Amazon S3 🔑
+
+O Amazon S3 reforça a criptografia em trânsito (à medida que viaja para e do Amazon S3) e em repouso. Para proteger os dados, o Amazon S3 criptografa automaticamente todos os objetos no upload e aplica criptografia do lado do servidor com chaves gerenciadas pelo S3 como o nível base de criptografia para cada bucket no Amazon S3, sem custo adicional.
+
+### Classes de Armazenamento do Amazon S3 📂
+
+Quando você carrega um objeto no Amazon S3 e não especifica a classe de armazenamento, você o carrega na classe de armazenamento padrão, frequentemente chamada de armazenamento padrão. Em lições anteriores, você aprendeu sobre a classe de armazenamento padrão do Amazon S3.
+
+As classes de armazenamento do Amazon S3 permitem que você mude seu nível de armazenamento quando as características dos seus dados mudarem. Por exemplo, se você está acessando suas fotos antigas com pouca frequência, pode querer mudar a classe de armazenamento das fotos para economizar custos.
+
+### Versionamento do Amazon S3 🗃️
+
+Como descrito anteriormente, o Amazon S3 identifica objetos em parte pelo uso do nome do objeto. Por exemplo, quando você carrega uma foto de um funcionário no Amazon S3, você pode nomear o objeto como employee.jpg e armazená-lo em um bucket chamado employees. Sem o versionamento do Amazon S3, toda vez que você carregar um objeto chamado employee.jpg no bucket employees, ele sobrescreverá o objeto original.
+
+Isso pode ser um problema por várias razões, incluindo as seguintes:
+
+- **Nomes comuns**: O nome do objeto employee.jpg é um nome comum para um objeto de foto de funcionário. Você ou outra pessoa que tenha acesso ao bucket pode não ter a intenção de sobrescrevê-lo; mas uma vez sobrescrito, o objeto original não pode ser acessado.
+- **Preservação de versões**: Você pode querer preservar diferentes versões de employee.jpg. Sem versionamento, se você quisesse criar uma nova versão de employee.jpg, precisaria carregar o objeto e escolher um nome diferente para ele. Ter vários objetos com pequenas diferenças nos nomes pode causar confusão e desordem nos buckets do S3.
+
+Para evitar esses problemas, você pode usar o versionamento do Amazon S3. O versionamento mantém várias versões de um único objeto no mesmo bucket. Isso preserva versões antigas de um objeto sem usar nomes diferentes, o que ajuda na recuperação de objetos de exclusões acidentais, sobrescritas acidentais ou falhas de aplicativos.
+
+Se você habilitar o versionamento para um bucket, o Amazon S3 gera automaticamente um ID de versão exclusivo para o objeto. Em um bucket, por exemplo, você pode ter dois objetos com a mesma chave, mas diferentes IDs de versão, como employeephoto.jpg (versão 111111) e employeephoto.jpg (versão 121212).
+
+Usando buckets com versionamento habilitado, você pode recuperar objetos de exclusões ou sobrescritas acidentais. A seguir estão alguns exemplos:
+
+- **Exclusão de um objeto**: Não remove o objeto permanentemente. Em vez disso, o Amazon S3 coloca um marcador no objeto que mostra que você tentou excluí-lo. Se você quiser restaurar o objeto, pode remover o marcador e o objeto será reinstalado.
+- **Sobrescrever um objeto**: Resulta em uma nova versão do objeto no bucket. Você ainda tem acesso às versões anteriores do objeto.
+
+### Estados de Versionamento 🚦
+
+Os buckets podem estar em um dos três estados. O estado de versionamento se aplica a todos os objetos no bucket. Custos de armazenamento são incorridos para todos os objetos no seu bucket, incluindo todas as versões. Para reduzir sua conta do Amazon S3, você pode querer
+
+Aqui está a tradução em português do conteúdo sobre bancos de dados na AWS, formatado em Markdown com emojis:
+
+# Introdução aos Bancos de Dados na AWS 📚
+
+## Histórico dos Bancos de Dados Empresariais
+
+Escolher um banco de dados costumava ser uma decisão simples. Os clientes tinham poucas opções para escolher. Normalmente, eles consideravam alguns fornecedores e então, inevitavelmente, escolhiam um para todas as suas aplicações. As empresas muitas vezes selecionavam uma tecnologia de banco de dados antes de entender completamente seu caso de uso. Desde a década de 1970, o tipo de banco de dados mais comumente selecionado pelas empresas era o banco de dados relacional.
+
+## Bancos de Dados Relacionais
+
+Um banco de dados relacional organiza dados em tabelas. Os dados em uma tabela podem se ligar aos dados de outras tabelas para criar relações—daí o nome "relacional".
+
+Uma tabela armazena dados em linhas e colunas. Uma linha, frequentemente chamada de registro, contém todas as informações sobre uma entrada específica. As colunas descrevem atributos de uma entrada.
+A imagem a seguir mostra uma tabela de livros, uma tabela de vendas e uma tabela de autores. Na tabela de livros, cada linha inclui o ISBN (International Standard Book Number), título, autor e formato. Cada um desses atributos é armazenado em sua própria coluna. A tabela de livros tem algo em comum com as outras duas tabelas—o atributo autor. Essa coluna comum cria uma relação entre as tabelas.
+
+As tabelas, linhas, colunas e as relações entre elas são chamadas de esquema lógico. Com bancos de dados relacionais, um esquema é fixo. Depois que o banco de dados está operacional, torna-se difícil alterar o esquema. Por causa disso, a maior parte da modelagem de dados é feita antecipadamente, antes de o banco de dados estar ativo.
+
+## Sistema de Gerenciamento de Banco de Dados Relacional (RDBMS)
+
+Com um sistema de gerenciamento de banco de dados relacional (RDBMS), você pode criar, atualizar e administrar um banco de dados relacional. Alguns exemplos comuns de RDBMS incluem:
+
+- MySQL
+- PostgreSQL
+- Oracle
+- Microsoft SQL Server
+- Amazon Aurora
+
+Você se comunica com um RDBMS usando consultas em linguagem de consulta estruturada (SQL), semelhante ao exemplo a seguir:
+
+```sql
+SELECT * FROM table_name;
+```
+
+Esta consulta seleciona todos os dados de uma tabela específica. No entanto, o poder das consultas SQL está em criar consultas mais complexas que extraem dados de várias tabelas para identificar padrões e respostas para problemas empresariais. Por exemplo, consultar a tabela de vendas e a tabela de livros juntas para ver as vendas em relação aos livros de um autor. Consultar tabelas juntas para entender melhor suas relações é possível graças a um "join".
+
+## Benefícios dos Bancos de Dados Relacionais
+
+Para saber mais sobre os benefícios de usar bancos de dados relacionais, veja os cartões a seguir.
+
+### Cartões de Benefícios
+
+- **Consultas SQL Complexas** 🔄: Com SQL, você pode unir várias tabelas para entender melhor as relações entre seus dados.
+- **Redução de Redundância** ➗: Você pode armazenar dados em uma tabela e referenciá-los em outras tabelas em vez de salvar os mesmos dados em diferentes lugares.
+- **Familiaridade** 📖: Como os bancos de dados relacionais são uma escolha popular desde a década de 1970, os profissionais técnicos geralmente têm familiaridade e experiência com eles.
+- **Precisão** ✅: Bancos de dados relacionais garantem que seus dados tenham alta integridade e adiram ao princípio ACID (atomicidade, consistência, isolamento e durabilidade).
+
+## Casos de Uso de Bancos de Dados Relacionais
+
+Grande parte do mundo funciona com bancos de dados relacionais. Na verdade, eles estão no núcleo de muitas aplicações críticas, algumas das quais você pode usar no seu dia a dia.
+
+### Exemplos de Casos de Uso
+
+- **Aplicações com um Esquema Fixo** 📊: Aplicações que têm uma estrutura de dados que não muda com frequência.
+- **Aplicações que Precisam de Armazenamento Persistente** 💾: Aplicações que requerem que os dados persistam mesmo após a interrupção ou falha do sistema.
+
+## Escolha entre Bancos de Dados Gerenciados e Não Gerenciados
+
+Se você quiser trocar seu banco de dados local por um banco de dados relacional na AWS, primeiro você precisa escolher como deseja executá-lo—gerenciado ou não gerenciado. Os serviços gerenciados e não gerenciados são tratados de forma semelhante ao modelo de responsabilidade compartilhada. O modelo de responsabilidade compartilhada distingue entre as responsabilidades de segurança da AWS e as responsabilidades de segurança do cliente. Da mesma forma, gerenciado em comparação com não gerenciado pode ser entendido como uma troca entre conveniência e controle.
+
+### Bancos de Dados Não Gerenciados
+
+Se você opera um banco de dados relacional localmente, você é responsável por todos os aspectos da operação. Isso inclui segurança do data center e eletricidade, gerenciamento das máquinas host, gerenciamento do banco de dados, otimização de consultas e gerenciamento de dados dos clientes. Você é responsável por absolutamente tudo, o que significa que você tem controle sobre absolutamente tudo.
+
+Agora, suponha que você queira transferir parte do trabalho para a AWS executando seu banco de dados relacional no Amazon Elastic Compute Cloud (Amazon EC2). Se você hospeda um banco de dados no Amazon EC2, a AWS implementa e mantém a infraestrutura física e o hardware e instala o sistema operacional (OS) da instância EC2. No entanto, você ainda é responsável por gerenciar a instância EC2, gerenciar o banco de dados nesse host, otimizar consultas e gerenciar os dados dos clientes.
+
+Esta é chamada de opção de banco de dados não gerenciado. Nesta opção, a AWS é responsável e tem controle sobre o hardware e a infraestrutura subjacente. Você é responsável e tem controle sobre o gerenciamento do host e do banco de dados.
+
+### Bancos de Dados Gerenciados
+
+Para transferir mais trabalho para a AWS, você pode usar um serviço de banco de dados gerenciado. Esses serviços fornecem a configuração da instância EC2 e do banco de dados, além de sistemas para alta disponibilidade, escalabilidade, patching e backups. No entanto, neste modelo, você ainda é responsável pela afinação do banco de dados, otimização de consultas e garantir que seus dados de clientes estejam seguros. Esta opção oferece a máxima conveniência, mas o menor controle em comparação com as duas opções anteriores.
+
+### 🚀 Bancos de Dados Projetados para Fins Específicos
+
+#### 📊 Bancos de dados projetados para todas as necessidades de aplicativos
+
+No passado, os bancos de dados relacionais eram a escolha padrão e eram amplamente utilizados em quase todas as aplicações. Um banco de dados relacional é como uma ferramenta multifuncional. Ele pode fazer muitas coisas, mas não é perfeitamente adequado para nenhuma tarefa específica. Com o tempo, tornou-se evidente que essa abordagem de "tamanho único" não funcionava para todas as necessidades empresariais. Isso levou ao surgimento de bancos de dados projetados para fins específicos.
+
+A AWS oferece um amplo portfólio de bancos de dados projetados para atender a diversos modelos de dados, permitindo que os desenvolvedores escolham o banco de dados que melhor se adapta às necessidades de suas aplicações. Isso possibilita a construção de aplicativos escaláveis e distribuídos, focando em resolver problemas específicos de maneira eficiente e afastando-se de bancos de dados comerciais restritivos.
+
+#### 🗂️ Amazon DynamoDB
+
+DynamoDB é um banco de dados NoSQL totalmente gerenciado que oferece desempenho rápido e consistente em qualquer escala. Ele possui um modelo de cobrança flexível, integração estreita com infraestrutura como código (IaC) e um modelo operacional sem intervenção. DynamoDB tornou-se o banco de dados preferido para duas categorias de aplicações: aplicações de alta escala e aplicações serverless. No entanto, pode funcionar para quase todas as cargas de trabalho de processamento de transações online (OLTP).
+
+#### 🔄 Amazon ElastiCache 
+
+ElastiCache é uma solução de cache em memória totalmente gerenciada que oferece suporte para dois mecanismos de cache em memória de código aberto: Redis e Memcached. Você não é responsável por falhas de instância, backups e restaurações ou atualizações de software.
+
+#### 🧠 Amazon MemoryDB for Redis
+
+MemoryDB é um serviço de banco de dados em memória durável e compatível com Redis que oferece desempenho ultrarrápido. Com MemoryDB, você pode obter latência de leitura em microssegundos, latência de gravação em milissegundos de dígitos únicos, alta taxa de transferência e durabilidade Multi-AZ para aplicações modernas, como aquelas construídas com arquiteturas de microsserviços.
+
+#### 📄 Amazon DocumentDB (compatível com MongoDB)
+
+Amazon DocumentDB é um banco de dados de documentos totalmente gerenciado da AWS. Um banco de dados de documentos é um tipo de banco de dados NoSQL que você pode usar para armazenar e consultar documentos ricos em sua aplicação. Esses tipos de bancos de dados funcionam bem para casos de uso como sistemas de gerenciamento de conteúdo, gerenciamento de perfis e aplicações web e móveis.
+
+#### 🔑 Amazon Keyspaces (para Apache Cassandra)
+
+Amazon Keyspaces é um serviço de banco de dados gerenciado, altamente disponível e escalável, compatível com Apache Cassandra. É uma boa opção para aplicações de alto volume com padrões de acesso simples, permitindo executar cargas de trabalho Cassandra na AWS usando o mesmo código CQL, drivers licenciados Apache 2.0 e ferramentas que você já usa hoje.
+
+#### 🌐 Amazon Neptune
+
+Neptune é um banco de dados gráfico totalmente gerenciado oferecido pela AWS. Um banco de dados gráfico é uma boa escolha para dados altamente conectados com uma variedade rica de relacionamentos. Empresas costumam usar bancos de dados gráficos para motores de recomendação, detecção de fraudes e gráficos de conhecimento.
+
+#### ⏱️ Amazon Timestream
+
+Timestream é um serviço de banco de dados de séries temporais rápido, escalável e sem servidor para aplicações de Internet das Coisas (IoT) e operacionais. Facilita o armazenamento e análise de trilhões de eventos por dia até 1.000 vezes mais rápido e por um décimo do custo dos bancos de dados relacionais.
+
+#### 🔒 Amazon Quantum Ledger Database (Amazon QLDB)
+
+Com bancos de dados tradicionais, você pode sobrescrever ou excluir dados, por isso desenvolvedores usam técnicas como tabelas de auditoria e trilhas de auditoria para ajudar a rastrear a linhagem dos dados. Essas abordagens podem ser difíceis de escalar e colocam a responsabilidade de garantir que todos os dados sejam registrados no desenvolvedor da aplicação. Amazon QLDB é um banco de dados de ledger projetado especificamente que fornece um histórico completo e criptograficamente verificável de todas as mudanças feitas nos dados da sua aplicação.
+
+### 🌟 Amazon DynamoDB
+
+#### 🔍 Visão Geral do DynamoDB
+
+DynamoDB é um serviço de banco de dados NoSQL totalmente gerenciado que oferece desempenho rápido e previsível com escalabilidade contínua. Com o DynamoDB, você pode descarregar os encargos administrativos de operar e escalar um banco de dados distribuído. Você não precisa se preocupar com provisionamento de hardware, configuração, replicação, aplicação de patches de software ou escalonamento de clusters.
+
+#### 🔧 Com o DynamoDB, você pode fazer o seguinte:
+
+- 📦 Criar tabelas de banco de dados que podem armazenar e recuperar qualquer quantidade de dados e atender a qualquer nível de tráfego de solicitações.
+- 📈 Escalar para cima ou para baixo a capacidade de throughput de suas tabelas sem tempo de inatividade ou degradação de desempenho.
+- 📊 Monitorar o uso de recursos e métricas de desempenho usando o Console de Gerenciamento da AWS.
+
+DynamoDB distribui automaticamente os dados e o tráfego de suas tabelas sobre um número suficiente de servidores para atender às suas necessidades de throughput e armazenamento, mantendo desempenho rápido e consistente. Todos os seus dados são armazenados em SSDs e replicados automaticamente em várias zonas de disponibilidade em uma região, proporcionando alta disponibilidade e durabilidade de dados embutidas.
+
+#### 🧩 Componentes principais do DynamoDB
+
+No DynamoDB, tabelas, itens e atributos são os componentes principais com os quais você trabalha. Uma tabela é uma coleção de itens, e cada item é uma coleção de atributos. O DynamoDB usa chaves primárias para identificar exclusivamente cada item em uma tabela e índices secundários para fornecer mais flexibilidade nas consultas.
+
+#### 🔄 Casos de uso do DynamoDB
+
+DynamoDB é um serviço totalmente gerenciado que lida com o trabalho operacional. Você pode descarregar os encargos administrativos de operar e escalar bancos de dados distribuídos para a AWS. 
+
+Você pode considerar usar o DynamoDB nas seguintes circunstâncias:
+
+- 📈 Você está enfrentando problemas de escalabilidade com outros sistemas de banco de dados tradicionais.
+- 💻 Você está ativamente desenvolvendo um aplicativo ou serviço.
+- 💼 Você está lidando com uma carga de trabalho OLTP.
+- 🚀 Você está implantando um aplicativo crítico que deve estar altamente disponível o tempo todo sem intervenção manual.
+- 🔒 Você exige um alto nível de durabilidade de dados, independentemente de sua estratégia de backup e restauração.
+
+DynamoDB é usado em uma ampla gama de cargas de trabalho devido à sua simplicidade, desde operações de baixa escala até operações de ultra alta escala, como aquelas demandadas pela Amazon.com.
+
+#### 🛡️ Segurança do DynamoDB
+
+DynamoDB fornece uma série de recursos de segurança a serem considerados ao desenvolver e implementar suas próprias políticas de segurança. Eles incluem:
+
+- 💾 DynamoDB fornece uma infraestrutura de armazenamento altamente durável projetada para armazenamento de dados críticos e primários. Os dados são armazenados de forma redundante em vários dispositivos em várias instalações em uma região do DynamoDB.
+- 🔐 Todos os dados do usuário armazenados no DynamoDB são totalmente criptografados em repouso. A criptografia em repouso do DynamoDB oferece segurança aprimorada criptografando todos os seus dados em repouso usando chaves de criptografia armazenadas no AWS Key Management Service (AWS KMS).
+- 👥 Administradores do IAM controlam quem pode ser autenticado e autorizado a usar recursos do DynamoDB. Você pode usar o IAM para gerenciar permissões de acesso e implementar políticas de segurança.
+- 🌐 Como um serviço gerenciado, o DynamoDB é protegido pelos procedimentos de segurança da rede global da AWS.
+
+### 🔍 Choosing the Right Database Service
+
+#### 🗂️ AWS Database Services
+
+A AWS oferece uma variedade de opções de banco de dados para diferentes casos de uso. A tabela a seguir fornece uma visão rápida do portfólio de banco de dados da AWS:
+
+| **AWS Service(s)** | **Database Type** | **Use Cases** |
+|--------------------|-------------------|---------------|
+| Amazon RDS, Aurora, Amazon Redshift | Relational | Traditional applications, ERP, CRM, ecommerce |
+| DynamoDB | Key-value | High-traffic web applications, ecommerce systems, gaming applications |
+| Amazon ElastiCache for Memcached, Amazon ElastiCache for Redis | In-memory | Caching, session management, gaming leaderboards, geospatial applications |
+| Amazon DocumentDB | Document | Content management, catalogs, user profiles |
+| Amazon Keyspaces | Wide column | High-scale industrial applications for equipment maintenance, fleet management, route optimization |
+| Neptune | Graph | Fraud detection, social networking, recommendation engines |
+| Timestream | Time series | IoT applications, Development Operations (DevOps), industrial telemetry |
+| Amazon QLDB | Ledger | Systems of record, supply chain, registrations, banking transactions |
+
+#### 🔄 Breaking Up Applications and Databases
+
+À medida que a indústria evolui, as aplicações e bancos de dados também mudam. Hoje, com aplicações maiores, não se vê mais apenas um banco de dados suportando-as. Em vez disso, as aplicações são divididas em serviços menores, cada um com seu próprio banco de dados construído para um propósito específico. Essa mudança elimina a ideia de um banco de dados único para todos os casos e a substitui por uma estratégia de banco de dados complementar. Você pode fornecer a cada banco de dados a funcionalidade apropriada, desempenho e escala que a carga de trabalho exige.
+
+#### 🌟 Benefícios da Estratégia de Banco de Dados Complementar
+
+- 📈 **Desempenho otimizado:** Cada banco de dados pode ser ajustado para o tipo específico de dados e carga de trabalho.
+- ⚖️ **Escalabilidade:** Bancos de dados individuais podem ser escalados independentemente, conforme necessário.
+- 🛠️ **Funcionalidade especializada:** Usar bancos de dados específicos para diferentes partes da aplicação permite funcionalidades avançadas que seriam difíceis de implementar em um único banco de dados.
+
+### 🎯 Exemplos de Casos de Uso
+
+- **Aplicações tradicionais:** Use Amazon RDS ou Aurora para aplicações como ERP e CRM.
+- **Aplicações de alto tráfego:** DynamoDB é ideal para sistemas de ecommerce e aplicações de jogos.
+- **Cache e gerenciamento de sessão:** Amazon ElastiCache para Memcached ou Redis.
+- **Gerenciamento de conteúdo:** Amazon DocumentDB para catálogos e perfis de usuários.
+- **Aplicações industriais de alta escala:** Amazon Keyspaces para manutenção de equipamentos e otimização de rotas.
+- **Detecção de fraudes e redes sociais:** Neptune para motores de recomendação.
+- **Dados de séries temporais:** Timestream para aplicações de IoT e telemetria industrial.
+- **Transações bancárias e registros:** Amazon QLDB para sistemas de registro e cadeia de suprimentos.
+
+## 🛠️ Monitoramento
+
+### 🎯 Propósito do Monitoramento
+
+Ao operar um site como o aplicativo de diretório de funcionários na AWS, você pode ter perguntas como as seguintes:
+
+- 📈 Quantas pessoas estão visitando meu site dia a dia?
+- 📊 Como posso rastrear o número de visitantes ao longo do tempo?
+- 🖥️ Como saberei se o site está tendo problemas de desempenho ou disponibilidade?
+- ⚡ O que acontece se minha instância do Amazon Elastic Compute Cloud (Amazon EC2) ficar sem capacidade?
+- 🚨 Serei alertado se meu site cair?
+
+Você precisa de uma maneira de coletar e analisar dados sobre a saúde operacional e o uso de seus recursos. O ato de coletar, analisar e usar dados para tomar decisões ou responder a perguntas sobre seus recursos e sistemas de TI é chamado de monitoramento.
+
+O monitoramento fornece um pulso quase em tempo real do seu sistema e ajuda a responder às perguntas anteriores. Você pode usar os dados que coleta para observar problemas operacionais causados por eventos como uso excessivo de recursos, falhas de aplicativos, configuração incorreta de recursos ou eventos relacionados à segurança. Pense nos dados coletados por meio do monitoramento como saídas do sistema, ou métricas.
+
+### 📊 Usar Métricas para Resolver Problemas
+
+Os recursos da AWS que hospedam suas soluções criam várias formas de dados que você pode estar interessado em coletar. Cada ponto de dados individual que um recurso cria é uma métrica. Métricas que são coletadas e analisadas ao longo do tempo se tornam estatísticas, como a média de utilização de CPU ao longo do tempo mostrando um pico.
+
+Uma maneira de avaliar a saúde de uma instância EC2 é através da utilização de CPU. De maneira geral, se uma instância EC2 tem alta utilização de CPU, isso pode significar uma inundação de solicitações ou refletir um processo que encontrou um erro e está consumindo muito da CPU. Ao analisar a utilização da CPU, tome um processo que excede um limite específico por um tempo incomum. Use esse evento anormal como um sinal para resolver manual ou automaticamente o problema através de ações como escalar a instância.
+
+A utilização de CPU é um exemplo de métrica. Outros exemplos de métricas que as instâncias EC2 possuem são a utilização de rede, desempenho do disco, utilização de memória e os logs criados pelos aplicativos executados em cima do Amazon EC2.
+
+### 🛠️ Tipos de Métricas
+
+Diferentes recursos na AWS criam diferentes tipos de métricas. Para ver exemplos de métricas associadas a diferentes recursos, vire cada um dos seguintes flashcards escolhendo-os. 
+
+| **Frente do Cartão** | **Verso do Cartão** |
+|----------------------|---------------------|
+| Métricas do Amazon Simple Storage Service (Amazon S3) | Tamanho dos objetos armazenados em um bucket, Número de objetos armazenados em um bucket, Número de solicitações HTTP feitas a um bucket |
+| Métricas do Amazon Relational Database Service (Amazon RDS) | Conexões de banco de dados, Utilização de CPU de uma instância, Consumo de espaço em disco |
+| Métricas do Amazon EC2 | Utilização de CPU, Utilização de rede, Desempenho do disco, Verificações de status |
+
+Esta não é uma lista completa de métricas para qualquer um dos serviços mencionados, mas você pode ver como diferentes recursos criam diferentes métricas. Você pode estar interessado em uma ampla variedade de métricas, dependendo de seus recursos, objetivos e perguntas.
+
+### 🌟 Benefícios do Monitoramento
+
+O monitoramento dá visibilidade aos seus recursos, mas a pergunta agora é: "Por que isso é importante?" Esta seção descreve alguns dos benefícios do monitoramento.
+
+#### ⚙️ Responder Proativamente
+#### 🚀 Melhorar Desempenho e Confiabilidade
+#### 🔒 Reconhecer Ameaças e Eventos de Segurança
+#### 📊 Tomar Decisões Baseadas em Dados
+#### 💰 Criar Soluções Custo-efetivas
