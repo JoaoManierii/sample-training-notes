@@ -947,3 +947,196 @@ O monitoramento dá visibilidade aos seus recursos, mas a pergunta agora é: "Po
 #### 🔒 Reconhecer Ameaças e Eventos de Segurança
 #### 📊 Tomar Decisões Baseadas em Dados
 #### 💰 Criar Soluções Custo-efetivas
+
+## 🌩️ Amazon CloudWatch
+
+### 🌐 Visibilidade usando o CloudWatch
+
+Recursos da AWS criam dados que você pode monitorar através de métricas, logs, tráfego de rede, eventos e mais. Esses dados vêm de componentes que são distribuídos por natureza, o que pode dificultar a coleta dos dados necessários se você não tiver um local centralizado para revisar tudo. A AWS centraliza a coleta de dados para você com um serviço chamado CloudWatch.
+
+CloudWatch é um serviço de monitoramento e observabilidade que coleta seus dados de recursos e fornece insights acionáveis sobre suas aplicações. Com o CloudWatch, você pode responder a mudanças de desempenho em todo o sistema, otimizar o uso de recursos e obter uma visão unificada da saúde operacional.
+
+Você pode usar o CloudWatch para:
+
+- 🔍 Detectar comportamentos anômalos em seus ambientes.
+- 🚨 Definir alarmes para alertá-lo quando algo estiver errado.
+- 📊 Visualizar logs e métricas com o Console de Gerenciamento da AWS.
+- 🔄 Tomar ações automatizadas como escalar.
+- 🛠️ Solucionar problemas.
+- 🔎 Descobrir insights para manter suas aplicações saudáveis.
+
+### ⚙️ Como o CloudWatch Funciona
+
+Com o CloudWatch, tudo o que você precisa para começar é uma conta AWS. É um serviço gerenciado que você pode usar para monitoramento sem gerenciar a infraestrutura subjacente. O aplicativo de diretório de funcionários é construído com vários serviços AWS trabalhando juntos como blocos de construção. Monitorar os serviços individualmente pode ser desafiador. Felizmente, o CloudWatch atua como um local centralizado onde métricas são coletadas e analisadas. Muitos serviços AWS enviam automaticamente métricas para o CloudWatch gratuitamente a uma taxa de 1 ponto de dados por métrica a cada 5 minutos. Isso é chamado de monitoramento básico, e dá visibilidade aos seus sistemas sem custo extra. Para muitas aplicações, o monitoramento básico é adequado.
+
+Para aplicações executando em instâncias EC2, você pode obter mais granularidade postando métricas a cada minuto em vez de a cada 5 minutos usando uma funcionalidade chamada monitoramento detalhado. O monitoramento detalhado tem um custo adicional. Para mais informações sobre preços, consulte "Amazon CloudWatch Pricing" na seção de Recursos no final desta lição.
+
+### 📈 Métricas Personalizadas
+
+Suponha que você tenha uma aplicação e queira registrar o número de visualizações de página que seu site recebe. Como você registraria essa métrica com o CloudWatch? Primeiro, é uma métrica a nível de aplicação. Isso significa que não é algo que a instância EC2 enviaria ao CloudWatch por padrão. É aí que entram as métricas personalizadas. Com métricas personalizadas, você pode publicar suas próprias métricas no CloudWatch.
+
+Se você quiser obter uma visibilidade mais granular, pode usar métricas personalizadas de alta resolução, que permitem coletar métricas personalizadas com resolução de até 1 segundo. Isso significa que você pode enviar 1 ponto de dados por segundo por métrica personalizada.
+
+Alguns exemplos de métricas personalizadas incluem:
+
+- ⏱️ Tempos de carregamento da página web.
+- ❌ Taxas de erro de solicitação.
+- 🔢 Número de processos ou threads em sua instância.
+- 📊 Quantidade de trabalho realizada pela sua aplicação.
+
+### 🖥️ Dashboards do CloudWatch
+
+Uma vez que você provisiona seus recursos AWS e eles estão enviando métricas para o CloudWatch, você pode visualizar e revisar esses dados usando os dashboards do CloudWatch. Dashboards são páginas iniciais personalizáveis que você pode configurar para visualização de dados para uma ou mais métricas através de widgets, como gráficos ou texto.
+
+### 🚨 Alarmes do CloudWatch
+
+Você pode criar alarmes do CloudWatch para iniciar automaticamente ações com base em mudanças de estado sustentadas de suas métricas. Você configura quando os alarmes são acionados e a ação que é realizada.
+
+## 📈 Otimização da Solução
+
+### 📊 Disponibilidade
+
+A disponibilidade de um sistema é normalmente expressa como uma porcentagem de tempo de atividade em um ano determinado ou como um número de noves. A tabela a seguir lista as porcentagens de disponibilidade com base no tempo de inatividade por ano e sua notação em noves:
+
+| Disponibilidade (%) | Tempo de Inatividade por Ano | Notação em Nines |
+|---------------------|-----------------------------|------------------|
+| 90.0%               | 36.5 dias                   | 1 nine           |
+| 99.0%               | 3.65 dias                   | 2 nines          |
+| 99.9%               | 8.76 horas                  | 3 nines          |
+| 99.99%              | 52.56 minutos               | 4 nines          |
+| 99.999%             | 5.26 minutos                | 5 nines          |
+| 99.9999%            | 31.5 segundos               | 6 nines          |
+
+### 🤔 Por que melhorar a disponibilidade da aplicação?
+
+Na aplicação atual, uma instância EC2 hospeda a aplicação. As fotos são servidas a partir do Amazon S3, e os dados estruturados são armazenados no Amazon DynamoDB. Essa única instância EC2 é um ponto único de falha para a aplicação.
+
+Mesmo que o banco de dados e o Amazon S3 sejam altamente disponíveis, os clientes não têm como se conectar se a única instância se tornar indisponível. Uma maneira de resolver essa questão do ponto único de falha é adicionar mais um servidor em uma segunda Zona de Disponibilidade.
+
+### 🛠️ Como melhorar a disponibilidade?
+
+Para aumentar a disponibilidade da aplicação e eliminar o ponto único de falha, você pode implementar as seguintes melhorias:
+
+1. **Adicionar uma Instância em Outra Zona de Disponibilidade:**
+    - Distribuir a carga de trabalho entre várias instâncias EC2 em diferentes Zonas de Disponibilidade pode proteger sua aplicação contra falhas em uma única instância ou Zona de Disponibilidade.
+  
+2. **Utilizar Elastic Load Balancer (ELB):**
+    - O ELB pode distribuir o tráfego de rede de entrada entre várias instâncias EC2 em uma ou mais Zonas de Disponibilidade, aumentando a tolerância a falhas.
+
+3. **Configurar Auto Scaling:**
+    - Com o Auto Scaling, você pode garantir que sua aplicação sempre tenha o número certo de instâncias EC2 em execução para lidar com a carga atual, aumentando automaticamente o número de instâncias durante picos de demanda e diminuindo durante períodos de baixa demanda.
+
+4. **Implementar Backup e Recuperação:**
+    - Configurar backups regulares dos dados no Amazon S3 e Amazon DynamoDB garante que, em caso de falha, você pode restaurar rapidamente os dados e minimizar o tempo de inatividade.
+
+5. **Monitoramento e Alerta:**
+    - Usar serviços como Amazon CloudWatch para monitorar métricas de desempenho e definir alarmes para alertar sobre problemas pode permitir ações proativas para manter a disponibilidade da aplicação.
+
+Ao seguir essas práticas, você pode melhorar significativamente a disponibilidade da sua aplicação e proporcionar uma experiência mais confiável para seus usuários.
+
+```markdown
+## 🔄 Roteamento de Tráfego com Balanceamento de Carga Elástico (ELB)
+
+### ⚖️ Balanceadores de Carga
+
+O balanceamento de carga refere-se ao processo de distribuir tarefas entre um conjunto de recursos. No caso da aplicação do Diretório de Funcionários, os recursos são instâncias EC2 que hospedam a aplicação, e as tarefas são as solicitações enviadas. Você pode usar um balanceador de carga para distribuir as solicitações entre todos os servidores que hospedam a aplicação.
+
+Para fazer isso, o balanceador de carga precisa pegar todo o tráfego e redirecioná-lo para os servidores de backend com base em um algoritmo. O algoritmo mais popular é o round robin, que envia o tráfego para cada servidor, um após o outro.
+
+Um pedido típico para uma aplicação começa no navegador do cliente. A solicitação é enviada para um balanceador de carga. Em seguida, é enviada para uma das instâncias EC2 que hospedam a aplicação. O tráfego de retorno passa de volta pelo balanceador de carga e volta para o navegador do cliente.
+
+Embora seja possível instalar sua própria solução de balanceamento de carga em instâncias EC2, a AWS fornece o serviço ELB para você.
+
+### 🔧 Funcionalidades do ELB
+
+O serviço ELB oferece uma grande vantagem sobre o uso de sua própria solução de balanceamento de carga. Principalmente, você não precisa gerenciar ou operar o ELB. Ele pode distribuir o tráfego de aplicação de entrada entre instâncias EC2, contêineres, endereços IP e funções Lambda. Outras funcionalidades principais incluem:
+
+- **Modo Híbrido** – Como o ELB pode balancear a carga para endereços IP, ele pode funcionar em um modo híbrido, o que significa que também balanceia a carga para servidores on-premises.
+- **Alta Disponibilidade** – O ELB é altamente disponível. A única opção que você deve garantir é que os alvos do balanceador de carga sejam implantados em várias Zonas de Disponibilidade.
+- **Escalabilidade** – Em termos de escalabilidade, o ELB escala automaticamente para atender à demanda do tráfego de entrada. Ele lida com o tráfego de entrada e o envia para sua aplicação de backend.
+
+### ✅ Verificações de Saúde
+
+O monitoramento é uma parte importante dos balanceadores de carga porque eles devem direcionar o tráfego apenas para instâncias EC2 saudáveis. É por isso que o ELB suporta dois tipos de verificações de saúde:
+
+- Estabelecendo uma conexão com uma instância EC2 de backend usando TCP e marcando a instância como disponível se a conexão for bem-sucedida.
+- Fazendo uma solicitação HTTP ou HTTPS para uma página da web que você especificar e validando que um código de resposta HTTP é retornado.
+
+Levar tempo para definir uma verificação de saúde adequada é crítico. Verificar apenas se a porta de uma aplicação está aberta não significa que a aplicação está funcionando. Também não significa que fazer uma chamada para a página inicial de uma aplicação é a maneira correta.
+
+Por exemplo, a aplicação do Diretório de Funcionários depende de um banco de dados e do Amazon S3. A verificação de saúde deve validar todos os elementos. Uma maneira de fazer isso é criar uma página de monitoramento, como /monitor. Ela fará uma chamada para o banco de dados para garantir que pode se conectar, obter dados e fazer uma chamada para o Amazon S3. Em seguida, você aponta a verificação de saúde no balanceador de carga para a página /monitor.
+
+### 🖥️ Tipos de Balanceadores de Carga
+
+Existem três tipos de balanceadores de carga: Application Load Balancer (ALB), Network Load Balancer (NLB) e Gateway Load Balancer (GLB).
+
+### 📌 Selecionando Entre os Tipos de ELB
+
+Você pode selecionar entre os tipos de serviço ELB determinando quais funcionalidades são necessárias para sua aplicação. A tabela a seguir apresenta uma lista de algumas das principais funcionalidades dos balanceadores de carga. Para uma lista completa, consulte "Elastic Load Balancing features" na seção de Recursos no final desta lição.
+
+| Funcionalidade                   | ALB       | NLB       | GLB                                 |
+|----------------------------------|-----------|-----------|-------------------------------------|
+| Tipo de Balanceador de Carga     | Camada 7  | Camada 4  | Gateway de Camada 3 e Balanceamento de Carga de Camada 4 |
+| Tipo de Alvo                     | IP, instância, Lambda | IP, instância, ALB | IP, instância |
+| Protocolo de Ouvintes            | HTTP, HTTPS | TCP, UDP, TLS | IP |
+| Endereço IP Estático e Elastic IP| Sim       | Sim       | Sim                                 |
+| Preservar Endereço IP de Origem  | Sim       | Sim       | Sim                                 |
+| Resposta Fixa                    | Sim       |           |                                     |
+| Autenticação de Usuário          | Sim       |           |                                     |
+```
+## 🔄 Amazon EC2 Auto Scaling
+
+### ⚙️ Problemas de Capacidade
+
+Você pode melhorar a disponibilidade e a acessibilidade adicionando mais um servidor. No entanto, todo o sistema pode se tornar indisponível novamente se houver um problema de capacidade. Esta seção aborda problemas de carga para sistemas ativos-passivos e ativos-ativos. Esses problemas são resolvidos por meio de escalonamento.
+
+### 📈 Aumentar o Tamanho da Instância
+
+Se muitas solicitações forem enviadas para um único sistema ativo-passivo, o servidor ativo ficará indisponível e, com sorte, falhará para o servidor passivo. Mas isso não resolve nada. Com sistemas ativos-passivos, você precisa de escalonamento vertical, o que significa aumentar o tamanho do servidor. Com instâncias EC2, você seleciona um tipo maior ou diferente de instância. Isso só pode ser feito enquanto a instância está em estado de parada. Neste cenário, os seguintes passos ocorrem:
+
+1. Pare a instância passiva. Isso não impacta a aplicação, pois ela não está recebendo tráfego.
+2. Mude o tamanho ou tipo da instância e, em seguida, inicie a instância novamente.
+3. Direcione o tráfego para a instância passiva, tornando-a ativa.
+4. Pare, altere o tamanho e inicie a instância ativa anterior, pois ambas as instâncias devem corresponder.
+
+Quando o número de solicitações diminui, você deve realizar a mesma operação. Embora não haja muitos passos envolvidos, isso é na verdade muito trabalho manual. Outra desvantagem é que um servidor só pode escalar verticalmente até um certo limite. Quando esse limite é atingido, a única opção é criar outro sistema ativo-passivo e dividir as solicitações e funcionalidades entre eles. Isso pode exigir uma reescrita massiva da aplicação.
+
+### 🔄 Sistema Ativo-Ativo
+
+O sistema ativo-ativo pode ajudar quando há muitas solicitações, permitindo que você escale horizontalmente adicionando mais servidores. Para a aplicação funcionar em um sistema ativo-ativo, ela já foi criada como stateless, não armazenando sessões de clientes no servidor. Isso significa que ter dois ou quatro servidores não exigiria mudanças na aplicação. Seria apenas uma questão de criar mais instâncias quando necessário e desligá-las quando o tráfego diminuir. O serviço Amazon EC2 Auto Scaling pode cuidar dessa tarefa, criando e removendo automaticamente instâncias EC2 com base em métricas do Amazon CloudWatch.
+
+### 🔄 Escalabilidade Tradicional vs. Auto Scaling
+
+Com uma abordagem tradicional de escalabilidade, você compra e provisiona servidores suficientes para lidar com o tráfego em seu pico. No entanto, isso significa que, durante a noite, por exemplo, você pode ter mais capacidade do que tráfego, desperdiçando dinheiro. Desligar seus servidores à noite ou em momentos de tráfego mais baixo economiza apenas na eletricidade.
+
+### ⚙️ Funcionalidades do Amazon EC2 Auto Scaling
+
+O serviço Amazon EC2 Auto Scaling adiciona e remove capacidade para manter um desempenho estável e previsível ao menor custo possível. Ao ajustar a capacidade exatamente ao que sua aplicação usa, você paga apenas pelo que sua aplicação precisa. Isso significa que o Amazon EC2 Auto Scaling ajuda a escalar sua infraestrutura e garantir alta disponibilidade.
+
+### 🌟 Funcionalidades do Auto Scaling
+
+- **Escalabilidade Automática**: Escala automaticamente para dentro e para fora com base na demanda.
+- **Escalabilidade Programada**: Escala com base em horários definidos pelo usuário.
+- **Gerenciamento de Frota**: Substitui automaticamente instâncias EC2 não saudáveis.
+- **Escalabilidade Preditiva**: Usa machine learning (ML) para ajudar a agendar o número ideal de instâncias EC2.
+- **Opções de Compra**: Inclui vários modelos de compra, tipos de instância e Zonas de Disponibilidade.
+
+### 🚀 Componentes do Amazon EC2 Auto Scaling
+
+Existem três componentes principais do Amazon EC2 Auto Scaling, cada um respondendo a uma pergunta principal:
+
+- **Template ou Configuração de Lançamento**: Quais recursos devem ser escalados automaticamente?
+- **Grupos de Auto Scaling do Amazon EC2**: Onde os recursos devem ser implantados?
+- **Políticas de Escalonamento**: Quando os recursos devem ser adicionados ou removidos?
+
+### 📜 Templates e Configurações de Lançamento
+
+Vários parâmetros são necessários para criar instâncias EC2—ID da Amazon Machine Image (AMI), tipo de instância, grupo de segurança, volumes adicionais do Amazon EBS e mais. Todas essas informações também são necessárias para o Amazon EC2 Auto Scaling criar a instância EC2 em seu nome quando houver necessidade de escalonamento. Essas informações são armazenadas em um template de lançamento.
+
+Você pode usar um template de lançamento para lançar manualmente uma instância EC2 ou para usar com o Amazon EC2 Auto Scaling. Ele também suporta versionamento, que pode ser usado para rollback rápido se houver um problema ou a necessidade de especificar uma versão padrão do template. Dessa forma, enquanto iterando em uma nova versão, outros usuários podem continuar lançando instâncias EC2 usando a versão padrão até que você faça as alterações necessárias.
+
+### 📈 Políticas de Escalonamento
+
+Por padrão, um grupo de Auto Scaling será mantido na sua capacidade desejada inicial. Embora seja possível alterar manualmente a capacidade desejada, você também pode usar políticas de escalonamento.
+
+Na lição de Monitoramento, você aprendeu sobre métricas e alarmes do CloudWatch. Você usa métricas para manter informações sobre diferentes atributos da sua instância EC2, como a porcentagem de CPU. Você usa alarmes para especificar uma ação quando um limite é atingido. Métricas e alarmes são o que as políticas de escalonamento usam para saber quando agir. Por exemplo, você pode configurar um alarme que indica quando a utilização da CPU está acima de 70% em toda a frota de instâncias EC2. Ele então invocará uma política de escalonamento para adicionar uma instância EC2.
