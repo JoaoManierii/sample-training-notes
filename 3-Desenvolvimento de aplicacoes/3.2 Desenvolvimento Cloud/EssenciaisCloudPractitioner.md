@@ -690,3 +690,395 @@ Amazon DynamoDB Accelerator (DAX) é um serviço de cache na memória para Dynam
 - 🎮 Aplicativos de jogos
 - 🛒 Comércio eletrônico
 - 🌐 Aplicativos de IoT
+
+
+### Modelo de Responsabilidade Compartilhada da AWS
+
+O modelo de responsabilidade compartilhada da AWS divide as responsabilidades de segurança entre a AWS e o cliente. Enquanto a AWS cuida da segurança da infraestrutura da nuvem, o cliente é responsável pela segurança dentro da nuvem.
+
+#### Clientes: Segurança na Nuvem 🛡️🌩️
+Os clientes são responsáveis pela segurança e conformidade dos seus próprios dados e aplicativos que estão na nuvem AWS. Isso inclui:
+
+- **Gerenciamento de Dados**: Proteção dos dados armazenados em serviços como Amazon S3, RDS, DynamoDB, etc.
+- **Controle de Acesso**: Configuração de permissões e políticas de acesso usando AWS Identity and Access Management (IAM).
+- **Configuração de Rede**: Definição e gerenciamento de configurações de segurança de rede, incluindo VPC, sub-redes, e grupos de segurança.
+- **Gerenciamento de Patches e Updates**: Aplicação de patches e updates em sistemas operacionais e aplicativos instalados em instâncias EC2.
+- **Criptografia de Dados**: Implementação de criptografia para dados em trânsito e em repouso.
+- **Monitoramento e Log**: Uso de ferramentas como AWS CloudTrail e Amazon CloudWatch para monitorar atividades e acessar logs de auditoria.
+
+#### AWS: Segurança da Nuvem 🔒☁️
+A AWS é responsável pela proteção da infraestrutura que executa todos os serviços oferecidos na AWS Cloud. Isso inclui:
+
+- **Infraestrutura Física**: Segurança de data centers, incluindo controle de acesso físico e proteção contra desastres.
+- **Hardware e Software**: Manutenção de hardware, firmware e software necessários para a execução dos serviços AWS.
+- **Rede Global**: Proteção das redes que interconectam data centers e regiões da AWS.
+- **Serviços de Infraestrutura**: Segurança dos serviços de infraestrutura, como servidores, armazenamento e componentes de rede.
+- **Gerenciamento de Patches e Updates de Infraestrutura**: Aplicação de patches e atualizações em hardware e software da infraestrutura.
+
+#### Comparação com Proprietário e Construtora 🏠👷‍♂️
+O modelo de responsabilidade compartilhada pode ser comparado à relação entre um proprietário e uma construtora. A construtora (AWS) é responsável pela construção sólida da casa (infraestrutura da nuvem). O proprietário (cliente) é responsável por proteger o que está dentro da casa (dados e aplicativos) e garantir que as portas estejam fechadas e trancadas (configurações de segurança).
+
+
+### AWS Organizations 🏢🌐
+
+O AWS Organizations permite que você consolide e gerencie múltiplas contas AWS de forma centralizada. Este serviço facilita o controle de permissões e a organização de contas, atendendo às necessidades específicas de negócios e segurança da sua empresa.
+
+#### Estrutura de Organização 🌲
+- **Raiz da Organização**: Quando você cria uma organização, o AWS Organizations cria automaticamente uma raiz, que serve como o contêiner primário para todas as contas da organização.
+- **Unidades Organizacionais (UO)**: Grupos de contas dentro da organização que facilitam o gerenciamento de contas com requisitos de negócios ou segurança semelhantes.
+
+#### Políticas de Controle de Serviço (SCPs) 🛡️📜
+- As SCPs permitem colocar restrições nos serviços AWS, recursos e ações individuais de API que os usuários e funções em cada conta podem acessar.
+- Ao aplicar uma SCP a uma UO, todas as contas na UO herdam automaticamente as permissões especificadas na política.
+
+
+### AWS Artifact 🗂️🔒
+
+Dependendo do setor de sua empresa, talvez seja necessário manter padrões específicos. Uma auditoria ou inspeção assegurará que a empresa cumpriu esses padrões.
+
+O **AWS Artifact** é um serviço que concede acesso sob demanda a relatórios de segurança e conformidade da AWS e a contratos on-line selecionados. O AWS Artifact consiste em duas seções principais: **AWS Artifact Agreements** e **AWS Artifact Reports**.
+
+#### AWS Artifact Agreements 📝
+- **Contratos On-line**: Acesse contratos e acordos com a AWS para entender melhor os termos e condições que regem o uso dos serviços AWS.
+- **Gerenciamento de Conformidade**: Simplifique a gestão de conformidade ao ter contratos facilmente acessíveis e auditáveis.
+
+#### AWS Artifact Reports 📑
+- **Relatórios de Segurança e Conformidade**: Obtenha acesso a relatórios detalhados de segurança e conformidade, como:
+  - Certificações ISO da AWS
+  - Relatórios do Payment Card Industry (PCI)
+  - Relatórios de Controle da Organização de Serviços (SOC)
+- **Acesso Sob Demanda**: Visualize e faça download de relatórios sempre que precisar, facilitando a preparação para auditorias e inspeções.
+
+#### Centro de Conformidade para o Cliente 📚
+O **Centro de Conformidade para o Cliente** contém recursos que ajudam você a saber mais sobre a conformidade da AWS.
+
+- **Histórias de Conformidade dos Clientes**: Leia como empresas de setores regulamentados resolveram desafios de conformidade, governança e auditoria.
+- **Whitepapers e Documentação**: Acesse uma vasta gama de whitepapers e documentação sobre tópicos como:
+  - Respostas da AWS aos principais problemas de conformidade
+  - Visão geral do risco e da conformidade da AWS
+  - Lista de verificação da segurança de auditoria
+- **Plano de Aprendizagem para Auditores**: Projetado para indivíduos em funções jurídicas, de auditoria e de conformidade que desejam saber mais sobre como demonstrar conformidade usando a nuvem AWS.
+
+AWS Artifact oferece uma forma estruturada e eficiente de gerenciar a conformidade, garantindo que sua empresa atenda a padrões rigorosos e esteja preparada para auditorias.
+
+
+### Ataques de Negação de Serviço 🚫🖥️
+
+#### Cenário da Cafeteria 📞☕
+Os clientes podem telefonar para a cafeteria para fazer pedidos. Depois de atender cada chamada, um operador de caixa anota o pedido e o entrega ao barista.
+
+No entanto, suponha que uma pessoa telefone várias vezes para fazer pedidos, mas nunca retire as bebidas. Isso faz com que o operador de caixa fique indisponível para atender chamadas de outros clientes. A cafeteria pode tentar parar os pedidos falsos bloqueando o número de telefone que a pessoa está usando.
+
+Esse cenário é semelhante a um ataque de negação de serviço (DoS).
+
+#### Ataques de Negação de Serviço (DoS) 🚫
+Um ataque de negação de serviço (DoS) é uma tentativa deliberada de tornar um site ou aplicação indisponível para os usuários. 
+
+- **Ação de um Único Ator de Ameaça**: O invasor direciona um site ou aplicação, inundando-os com tráfego excessivo de rede até que o site ou a aplicação se sobrecarregue e não consiga responder.
+- **Resultado**: O serviço é negado aos usuários legítimos.
+
+#### Ataques Distribuídos de Negação de Serviço (DDoS) 🌐🚫
+Agora, suponha que a pessoa passando o trote tenha recrutado a ajuda de amigos. Essa pessoa e os amigos dela telefonam repetidamente para a cafeteria para fazer pedidos, mesmo que não pretendam retirá-los. Esses pedidos vêm de números de telefone diferentes, tornando impossível para a cafeteria bloqueá-los todos. O influxo de chamadas dificulta cada vez mais o atendimento aos clientes. 
+
+Esse cenário é semelhante a um ataque distribuído de negação de serviço (DDoS).
+
+- **Ação de Múltiplas Origens**: Em um ataque DDoS, várias origens são usadas para iniciar um ataque. Pode ser feito por um grupo de invasores ou um único invasor usando vários computadores infectados (bots) para enviar tráfego excessivo.
+- **Resultado**: O site ou aplicação se torna indisponível devido ao tráfego excessivo.
+
+#### AWS Shield 🛡️
+Para ajudar a minimizar o efeito de ataques DoS e DDoS em suas aplicações, você pode usar o **AWS Shield**.
+
+- **Proteção Contra DDoS**: O AWS Shield protege aplicações contra ataques DDoS.
+- **Níveis de Proteção**:
+  - **Standard**: Proteção básica contra ataques DDoS sem custo adicional.
+  - **Advanced**: Proteção avançada que inclui detecção e mitigação mais sofisticadas, além de suporte 24/7 e monitoramento contínuo.
+
+### AWS Key Management Service (AWS KMS) 🔐
+
+A cafeteria tem muitos itens, como máquinas de café, confeitaria, dinheiro nas caixas registradoras e assim por diante. Você pode pensar nesses itens como dados. Os proprietários da cafeteria querem garantir que todos esses itens estejam protegidos, independentemente de estarem dispostos na sala de armazenamento ou em transporte.
+
+Da mesma forma, você deve garantir que os dados das suas aplicações estejam protegidos durante o armazenamento (criptografia em repouso) e durante a transmissão (criptografia em trânsito).
+
+O AWS Key Management Service (AWS KMS) permite que você execute operações de criptografia usando chaves de criptografia. Uma chave de criptografia é uma cadeia aleatória de dígitos usada para bloquear (criptografar) e desbloquear (descriptografar) dados. Você pode usar o AWS KMS para criar, gerenciar e usar chaves de criptografia. Você também pode controlar o uso de chaves em uma ampla gama de serviços e em suas aplicações.
+
+Com o AWS KMS, você pode escolher os níveis específicos de controle de acesso necessários para suas chaves. Por exemplo, você pode especificar quais usuários e funções do IAM podem gerenciar chaves. Do mesmo modo, você pode desativar temporariamente as chaves para que não sejam mais usadas. Suas chaves nunca saem do AWS KMS e você está sempre no controle delas.
+
+### AWS WAF 🔒
+
+O AWS WAF é um firewall de aplicação web que permite monitorar solicitações de rede que entram em aplicações web.
+
+O AWS WAF trabalha em conjunto com o Amazon CloudFront e um Application Load Balancer. Lembre-se das listas de controle de acesso de rede que você aprendeu em um módulo anterior. O AWS WAF funciona de forma semelhante para bloquear ou permitir o tráfego. No entanto, ele faz isso usando uma lista de controle de acesso (ACL) da web para proteger seus recursos da AWS.
+
+Veja um exemplo de como você pode usar o AWS WAF para permitir e bloquear solicitações específicas.
+
+#### Exemplo de Uso do AWS WAF:
+- **Permitir Solicitações Legítimas**: Suponha que a aplicação tenha recebido solicitações de rede mal-intencionadas de vários endereços IP. Você quer impedir que essas solicitações continuem a acessar seu aplicativo, mas também deseja garantir que usuários legítimos ainda possam acessá-lo. Você configura a ACL da web para permitir todas as solicitações, exceto aquelas dos endereços IP que você especificou.
+- **Bloquear Solicitações Maliciosas**: Quando uma solicitação entra no AWS WAF, ele confere a lista de regras configurada na ACL da web. Se uma solicitação não for proveniente de um dos endereços IP bloqueados, ele permitirá o acesso à aplicação. No entanto, se uma solicitação for proveniente de um dos endereços IP bloqueados, o AWS WAF vai negar o acesso.
+
+### Amazon Inspector 🔍
+
+Suponha que os desenvolvedores da cafeteria estão desenvolvendo e testando um novo aplicativo para pedidos. Eles querem se certificar de que estão projetando o aplicativo de acordo com as práticas recomendadas de segurança. Contudo, eles têm vários outros aplicativos para desenvolver, por isso, não podem passar tempo demais fazendo avaliações manuais. Para fazer avaliações de segurança automatizadas, eles decidem usar o Amazon Inspector.
+
+O Amazon Inspector ajuda a melhorar a segurança e a conformidade das aplicações executando avaliações de segurança automatizadas. Ele verifica os aplicativos quanto a vulnerabilidades de segurança e desvios das práticas recomendadas de segurança, como acesso aberto a instâncias do Amazon EC2 e instalações de versões de software vulneráveis.
+
+Depois que o Amazon Inspector faz uma avaliação, ele apresenta uma lista de descobertas de segurança. A lista prioriza por nível de gravidade, com uma descrição detalhada de cada problema de segurança e uma recomendação sobre como corrigi-lo. Contudo, a AWS não garante que seguir as recomendações feitas resolverá todos os possíveis problemas de segurança. Sob o modelo de responsabilidade compartilhada, os clientes são responsáveis pela segurança de ferramentas, aplicativos e processos executados nos serviços AWS.
+
+### Amazon GuardDuty 🚨
+
+O Amazon GuardDuty é um serviço que realiza detecção inteligente de ameaças para sua infraestrutura e seus recursos AWS. Ele identifica ameaças monitorando continuamente a atividade da rede e o comportamento da conta no seu ambiente AWS.
+
+#### Etapas do Amazon GuardDuty:
+1. **Ativar**: Depois de habilitar o GuardDuty para sua conta AWS, ele começa a monitorar sua atividade de rede e conta.
+2. **Analisar**: GuardDuty analisa continuamente dados de várias fontes da AWS, incluindo logs de fluxo de VPC e logs de DNS.
+3. **Detectar com Inteligência**: Se o GuardDuty detectar ameaças, você poderá analisar as descobertas detalhadas no console de gerenciamento da AWS.
+4. **Ver Descobertas e Tomar Ações**: As descobertas incluem etapas recomendadas para a correção. Você também pode configurar as funções do AWS Lambda para executar as etapas de correção automaticamente em resposta às descobertas de segurança do GuardDuty.
+
+### Amazon CloudWatch 🌐
+
+O Amazon CloudWatch é um serviço da web que permite monitorar e gerenciar várias métricas e configurar ações de alarme de acordo com os dados dessas métricas.
+
+O CloudWatch usa métricas para representar os pontos de dados para seus recursos. Os serviços AWS enviam as métricas ao CloudWatch. Em seguida, o CloudWatch usa essas métricas para criar automaticamente gráficos que mostram como o desempenho mudou ao longo do tempo.
+
+### Alarmes do CloudWatch 🚨
+
+Com o CloudWatch, você pode criar alarmes que vão executar ações automaticamente se o valor da métrica ultrapassar ou for inferior a um limite predefinido.
+
+#### Exemplo de Uso de Alarme do CloudWatch:
+- **Interromper Instâncias do EC2**: Suponha que os desenvolvedores da sua empresa usem instâncias do Amazon EC2 para fins de desenvolvimento ou teste de aplicações. Se os desenvolvedores ocasionalmente se esquecerem de interromper as instâncias, as instâncias continuarão a ser executadas e incorrerão em cobranças.
+  - **Solução**: Você pode criar um alarme do CloudWatch que interrompe automaticamente uma instância do Amazon EC2 quando a porcentagem de utilização da CPU permanecer abaixo de um determinado limite por um período específico. Ao configurar o alarme, você pode especificar se deseja receber uma notificação sempre que esse alarme for acionado.
+
+### Painel do CloudWatch 📊
+
+O recurso de painel do CloudWatch permite que você acesse todas as métricas dos seus recursos em um único local.
+
+#### Exemplos de Uso do Painel do CloudWatch:
+- **Monitoramento de Utilização da CPU**: Você pode usar um painel do CloudWatch para monitorar a utilização da CPU de uma instância do Amazon EC2.
+- **Monitoramento de Solicitações do S3**: Você pode monitorar o número total de solicitações feitas para um bucket do Amazon S3.
+- **Personalização de Painéis**: Você pode personalizar painéis separados para diferentes fins comerciais, aplicativos ou recursos.
+
+
+### AWS CloudTrail 🛤️
+
+O AWS CloudTrail registra as chamadas de API realizadas na sua conta. As informações gravadas incluem a identidade do chamador da API, hora da chamada da API, endereço IP de origem do chamador da API e muito mais. Você pode pensar no CloudTrail como uma “trilha” (ou um log de ações) que alguém criou.
+
+Lembre-se de que você pode usar chamadas de API para provisionar, gerenciar e configurar seus recursos da AWS. Com o CloudTrail, você pode visualizar um histórico completo de atividades do usuário e chamadas de API de seus aplicativos e recursos.
+
+### Atualização de Eventos
+
+Normalmente, os eventos são atualizados no CloudTrail dentro de 15 minutos após uma chamada de API. Você pode filtrar eventos especificando a hora e a data em que uma chamada de API ocorreu, o usuário que solicitou a ação, o tipo de recurso envolvido na chamada de API e muito mais.
+
+### Exemplo: Evento do AWS CloudTrail 📋
+
+Suponha que o proprietário da cafeteria esteja navegando pela seção AWS Identity and Access Management (IAM) do Console de gerenciamento da AWS. Ele descobre que um novo usuário do IAM chamado Mary foi criado, mas não sabe quem, quando ou qual método foi usado para criar o usuário.
+
+#### Com o AWS CloudTrail, o proprietário pode:
+1. **Identificar o Chamador**: Saber quem criou o usuário Mary.
+2. **Hora da Criação**: Determinar quando o usuário Mary foi criado.
+3. **Método Utilizado**: Verificar qual método ou chamada de API foi usado para criar o usuário.
+
+### Benefícios do AWS CloudTrail
+
+- **Transparência**: Proporciona um histórico completo de atividades, aumentando a transparência.
+- **Segurança**: Ajuda a detectar atividades suspeitas e tomar medidas apropriadas.
+- **Auditoria**: Facilita a auditoria das atividades para fins de conformidade e análise.
+
+### Uso do AWS CloudTrail
+- **Monitoramento Contínuo**: Use o CloudTrail para monitorar continuamente todas as atividades de API em sua conta AWS.
+- **Filtros Personalizados**: Aplique filtros personalizados para encontrar eventos específicos rapidamente.
+- **Análise de Segurança**: Utilize as informações detalhadas para análise de segurança e auditoria.
+
+Ao utilizar o AWS CloudTrail, você garante que todas as atividades de API em sua conta são registradas e acessíveis para revisão, proporcionando uma camada adicional de segurança e conformidade.
+
+### AWS Trusted Advisor 🌟
+
+O AWS Trusted Advisor é um serviço da web que inspeciona seu ambiente AWS e faz recomendações em tempo real de acordo com as práticas recomendadas da AWS.
+
+### Categorias de Verificação
+
+O Trusted Advisor compara as descobertas com as práticas recomendadas da AWS em cinco categorias:
+1. **Otimização de Custos** 💸
+2. **Desempenho** 🚀
+3. **Segurança** 🔒
+4. **Tolerância a Falhas** 🔄
+5. **Limites de Serviço** 📏
+
+Para as verificações em cada categoria, o Trusted Advisor oferece uma lista de ações recomendadas e recursos adicionais para saber mais sobre as práticas recomendadas da AWS.
+
+### Benefícios do AWS Trusted Advisor
+
+As orientações feitas pelo AWS Trusted Advisor podem beneficiar sua empresa em todos os estágios da implantação. Por exemplo, você pode usar o AWS Trusted Advisor para ajudar enquanto cria fluxos de trabalho e desenvolve novas aplicações. Ou você pode também usá-lo enquanto faz melhorias contínuas em aplicações e recursos.
+
+### Painel do AWS Trusted Advisor 📊
+
+Ao acessar o painel do Trusted Advisor no console de gerenciamento da AWS, você pode analisar as verificações concluídas para otimização de custos, desempenho, segurança, tolerância a falhas e limites de serviço.
+
+#### Indicadores do Painel
+
+Para cada categoria:
+- **Marca de Verificação Verde** ✅: Indica o número de itens para os quais nenhum problema foi detectado.
+- **Triângulo Laranja** ⚠️: Representa o número de investigações recomendadas.
+- **Círculo Vermelho** ⭕: Representa o número de ações recomendadas.
+
+### Exemplos de Uso do AWS Trusted Advisor
+
+- **Otimização de Custos**: Identificar recursos subutilizados ou ociosos para reduzir despesas.
+- **Desempenho**: Garantir que suas aplicações estão utilizando os recursos de forma eficiente.
+- **Segurança**: Verificar se há vulnerabilidades ou configurações incorretas que possam comprometer a segurança.
+- **Tolerância a Falhas**: Assegurar que suas aplicações podem se recuperar rapidamente de falhas.
+- **Limites de Serviço**: Monitorar e gerenciar o uso de recursos para evitar ultrapassar os limites de serviço.
+
+Ao utilizar o AWS Trusted Advisor, você pode garantir que seu ambiente AWS esteja configurado de acordo com as melhores práticas, otimizando custos, melhorando o desempenho, aumentando a segurança e garantindo a resiliência de suas aplicações.
+
+# Nível Gratuito da AWS
+
+Com o nível gratuito da AWS, você pode começar a usar determinados serviços sem custos durante o período especificado. Existem três tipos de ofertas disponíveis:
+
+1. **Sempre Gratuito** 🆓
+2. **12 Meses Gratuitos** 🕛
+3. **Versões de Teste** 🧪
+
+# Calculadora de Preços da AWS
+
+A Calculadora de Preços da AWS permite explorar os serviços da AWS e gerar estimativas de custo para seus casos de uso. Com ela, você pode:
+
+- Organizar suas estimativas por grupos, refletindo a organização de sua empresa. 📊
+- Salvar e compartilhar estimativas por meio de links. 🔗
+
+# Painel de Cobrança
+
+Use o Painel de Faturamento e Gerenciamento de Custos da AWS para:
+
+- Pagar sua fatura da AWS 💳
+- Monitorar seu uso 📈
+- Analisar e controlar seus custos 💰
+
+Compare o saldo atual do mês acumulado com o mês anterior e obtenha uma previsão do próximo mês com base no uso atual.
+
+- Visualize os gastos do mês acumulado por serviço. 📅
+- Visualize o uso do nível gratuito por serviço. 📊
+- Acesse o Cost Explorer e crie orçamentos. 📈
+- Adquira e gerencie o Savings Plans. 💼
+- Publique relatórios de uso e custo da AWS. 📝
+
+# Cobrança Consolidada
+
+Em um módulo anterior, você aprendeu sobre o AWS Organizations, um serviço que permite gerenciar múltiplas contas AWS em um local central. O AWS Organizations também oferece a opção de cobrança consolidada.
+
+O recurso de cobrança consolidada do AWS Organizations permite que você receba uma única fatura para todas as contas AWS na sua organização. Ao consolidar, você pode rastrear facilmente os custos combinados de todas as contas vinculadas em sua organização. O número máximo de contas-padrão permitido para uma organização é quatro, mas você pode entrar em contato com o AWS Support para aumentar sua cota, se necessário.
+
+Na sua fatura mensal, você pode ver os encargos discriminados incorridos por cada conta. Isso permite que você tenha maior transparência nas contas da sua organização, mantendo a conveniência de receber uma única fatura mensal.
+
+Outro benefício da cobrança consolidada é a capacidade de compartilhar preços de desconto por volume, Savings Plans e instâncias reservadas nas contas da sua organização. Por exemplo, uma conta pode não ter uso mensal suficiente para se qualificar para preços com desconto. No entanto, quando várias contas são combinadas, o uso agregado pode resultar em um benefício que se aplica a todas as contas na organização.
+
+# AWS Budgets
+
+No AWS Budgets, você pode criar orçamentos para planejar o uso do serviço, os custos de serviço e as reservas de instâncias.
+
+As informações do AWS Budgets são atualizadas três vezes por dia. Isso ajuda você a definir com precisão a proximidade entre seu uso e os valores orçados ou limites de nível gratuito da AWS.
+
+No AWS Budgets, você também pode definir alertas personalizados para quando seu uso exceder (ou estiver prestes a exceder) o valor orçado.
+
+# AWS Cost Explorer
+
+O AWS Cost Explorer é uma ferramenta que permite visualizar, interpretar e gerenciar seus custos e uso da AWS ao longo do tempo.
+
+O AWS Cost Explorer inclui um relatório-padrão dos custos e do uso dos cinco principais serviços da AWS de acúmulo de custos. Você pode aplicar filtros e grupos personalizados para analisar seus dados. Por exemplo, você pode exibir o uso de recursos no nível por hora.
+
+# AWS Marketplace
+
+O AWS Marketplace é um catálogo digital com milhares de ofertas de software de provedores independentes de software. Você pode usar o AWS Marketplace para encontrar, testar e comprar software que pode ser executado na AWS.
+
+O AWS Marketplace oferece produtos em várias categorias, como Software de infraestrutura, DevOps, Produtos de dados, Serviços profissionais, Aplicações de negócios, Machine Learning, Indústrias e Internet das Coisas (IoT). 🛒
+
+Aqui está o conteúdo solicitado em formato Markdown, incluindo as seis perspectivas fundamentais do Cloud Adoption Framework (AWS CAF), com emojis:
+
+# Migracao e inovacao na nuvem
+
+## Seis Perspectivas Fundamentais do Cloud Adoption Framework
+
+No nível mais alto, o AWS Cloud Adoption Framework (AWS CAF) organiza orientações em seis áreas de foco chamadas perspectivas. Cada perspectiva aborda responsabilidades distintas. O processo de planejamento ajuda as pessoas certas em toda a organização a se prepararem para as mudanças futuras.
+
+Em geral, as perspectivas de negócio, pessoas e governança se concentram nos recursos comerciais, enquanto as perspectivas de plataforma, segurança e operações se concentram em capacidades técnicas.
+
+Para saber mais sobre o AWS CAF, expanda cada uma das seis categorias a seguir.
+
+## Perspectiva de Negócio 📈
+Foca em garantir que a adoção da nuvem esteja alinhada com os objetivos de negócios da organização. Envolve identificar métricas de sucesso, elaborar casos de negócios e criar um roteiro de adoção.
+
+## Perspectiva de Pessoas 👥
+Foca em preparar a organização para a mudança na cultura e nas competências necessárias para adotar a nuvem. Inclui a gestão de mudanças organizacionais, o desenvolvimento de habilidades e a comunicação eficaz.
+
+## Perspectiva de Governança 📜
+Foca em alinhar a estratégia de TI e as operações com os objetivos de negócios e garantir que a organização se mantenha em conformidade com os regulamentos e políticas. Envolve a criação de políticas, gerenciamento de riscos e controle financeiro.
+
+## Perspectiva de Plataforma 🖥️
+Foca na construção de uma base robusta de TI na nuvem. Envolve o planejamento de infraestrutura, a seleção de tecnologias e a arquitetura de soluções.
+
+## Perspectiva de Segurança 🔒
+Foca em garantir que a organização mantenha uma postura de segurança forte na nuvem. Inclui a implementação de controles de segurança, a proteção de dados e a gestão de identidade e acesso.
+
+## Perspectiva de Operações ⚙️
+Foca em manter a eficiência operacional e a continuidade dos negócios na nuvem. Envolve a gestão de operações diárias, a monitorização de desempenho e a otimização de processos.
+
+Cada perspectiva é essencial para um planejamento bem-sucedido e uma transição tranquila para a nuvem, ajudando a garantir que todas as áreas da organização estejam preparadas para as mudanças que a adoção da nuvem traz.
+
+# Seis Estratégias de Migração
+
+Ao migrar aplicações para a nuvem, seis das estratégias de migração mais comuns que você pode implementar são:
+
+1. **Redefinir Hospedagem** 🏠
+2. **Redefinir Plataforma** 🔄
+3. **Refatorar/Redefinir Arquitetura** 🛠️
+4. **Recomprar** 🛒
+5. **Reter** ⏳
+6. **Retirar** ❌
+
+Para saber mais sobre estratégias de migração, expanda cada uma das seis categorias a seguir.
+
+## Redefinir Hospedagem 🏠
+Mover aplicações do ambiente atual para a nuvem sem alterações significativas. Também conhecido como "lift and shift".
+
+## Redefinir Plataforma 🔄
+Fazer otimizações mínimas para aproveitar melhor os serviços em nuvem. Também conhecido como "lift, tinker, and shift".
+
+## Refatorar/Redefinir Arquitetura 🛠️
+Reimagine e reescreva aplicações para tirar total proveito dos serviços em nuvem.
+
+## Recomprar 🛒
+Substituir aplicações antigas por soluções SaaS (Software as a Service).
+
+## Reter ⏳
+Manter algumas aplicações no ambiente atual, postergando a migração.
+
+## Retirar ❌
+Desativar aplicações que não são mais necessárias ou viáveis.
+
+Aqui está o conteúdo sobre os membros da AWS Snow Family em formato Markdown, com emojis:
+
+# Membros da AWS Snow Family 🚚❄️
+
+A AWS Snow Family é uma coleção de dispositivos físicos para transporte físico de até exabytes de dados para dentro e para fora da AWS.
+
+A AWS Snow Family consiste nos seguintes serviços:
+
+1. **AWS Snowcone** 🍦
+2. **AWS Snowball** 📦
+3. **AWS Snowmobile** 🚛
+
+Esses dispositivos oferecem diferentes pontos de capacidade e a maioria inclui recursos de computação integrados. A AWS é a proprietária e responsável pelo gerenciamento da Snow Family, que integra recursos de segurança, monitoramento, gerenciamento de armazenamento e computação da AWS.
+
+Aqui está o conteúdo sobre como inovar com os serviços da AWS em formato Markdown, com emojis:
+
+# Inove com os serviços da AWS 🚀
+
+Ao examinar como usar os serviços da AWS, é importante focar nos resultados desejados. Você fica devidamente preparado para impulsionar a inovação na nuvem se conseguir articular claramente as seguintes condições:
+
+- **O estado atual** 📍
+- **O estado desejado** 🎯
+- **Os problemas que você está tentando resolver** ❓
+
+Considere alguns dos caminhos que poderá explorar no futuro, enquanto continuar em sua jornada para a nuvem.
+
+## Aplicações sem servidor ⚙️
+## Machine learning 🤖
+## Inteligência artificial 🧠
