@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity 0.8.14;
+pragma solidity ^0.8.14;
 
 contract WillThrow {
     error ThisIsACustomError(string, string);
@@ -18,4 +18,4 @@ contract ErrorHandling {
             emit ErrorLogging(reason);
         }
     }
-}......
+}
