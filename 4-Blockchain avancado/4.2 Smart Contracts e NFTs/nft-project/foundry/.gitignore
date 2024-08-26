@@ -1,0 +1,21 @@
+# Compiler files
+cache/
+out/
+node_modules/
+node_modules/*
+node_modules
+
+# Ignores development broadcast logs
+!/broadcast
+broadcast/*
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+
+# Docs
+docs/
+
+# Dotenv file
+.env
+.infura
+.secret
+.etherscan
